@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "tech/java-source-base.md",
+            "file": "tech/mysql.md",
             "mode": "source",
             "source": false
           }
@@ -69,35 +69,45 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/java-source-base.md",
+                "file": "tech/mysql.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
+                "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "168db2bcc2796b13",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "tech/mysql.md"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "active": "45199df6f5546ee8",
   "lastOpenFiles": [
+    "tech/mysql.md",
+    "tech/spring-transaction.md",
+    "tech/es6.md",
+    "tech/debian.md",
+    "tech/media/Pasted image 20220803145907.png",
     "tech/java-source-base.md",
-    "tech/intro-to-vue.md",
-    "tech/build-my-site.md",
-    "tech/algo-red-black-tree.md",
-    "store/断刀残雪.md",
-    "tech/java-thread.md",
-    "README.md",
-    "tech.md",
-    "store/长安乱.md",
-    "tech/centos7.md"
+    "tech/redis.md",
+    "tech/kompose.md",
+    "tech/ml-for-beginners.md",
+    "tech/intro-to-vue.md"
   ]
 }
