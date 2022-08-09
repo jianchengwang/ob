@@ -12,7 +12,7 @@ tags:
 
 <!--more-->
 
-## minikube
+## minikube学习环境
 
 实践出真知，这里安装[minikube](https://minikube.sigs.k8s.io)快速体验，
 
@@ -64,6 +64,8 @@ kubectl get pod -n kube-system
 
 ![[Pasted image 20220809144441.png]]
 
+![[Pasted image 20220809211414.png]]
+
 Kubernetes 采用了现今流行的“控制面 / 数据面”（Control Plane / Data Plane）架构，集群里的计算机被称为“节点”（Node），可以是实机也可以是虚机，少量的节点用作控制面来执行集群的管理维护工作，其他的大部分节点都被划归数据面，用来跑业务应用。
 
 控制面的节点在 Kubernetes 里叫做 Master Node，一般简称为 Master，它是整个集群里最重要的部分，可以说是 Kubernetes 的大脑和心脏。数据面的节点叫做 Worker Node，一般就简称为 Worker 或者 Node，相当于 Kubernetes 的手和脚，在 Master 的指挥下干活。
@@ -114,6 +116,8 @@ DNS 你应该比较熟悉吧，它在 Kubernetes 集群里实现了域名解析�
 
 ```shell
 minikube dashboard
+
+kubectl proxy --port=8888 --address='192.168.3.140' --accept-hosts='^.*' &
 ```
 
 ### 总结
@@ -200,7 +204,7 @@ kubectl explain pod.spec.containers
 ```
 4. 这第三个技巧就是 kubectl 的两个特殊参数 --dry-run=client 和 -o yaml，前者是空运行，后者是生成 YAML 格式，结合起来使用就会让 kubectl 不会有实际的创建动作，而只生成 YAML 文件
 ```shell
-kubectl run ngx --image=nginx:alpine --dry-run=client -o yaml
+kubectl run ngx --image=nginx:alpine --dry-run=client -o yaml > ngx.yaml
 ```
 ```yaml
 apiVersion: v1
@@ -525,5 +529,270 @@ spec:
     imagePullPolicy: IfNotPresent
     command: ["/bin/sleep", "300"]
 ```
+
+## 初级知识网络
+
+![[Pasted image 20220809222024.png]]
+
+## kubeadm搭建生产集群
+
+[kubeadm](https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/)，原理和 minikube 类似，也是用容器和镜像来封装 Kubernetes 的各种组件，但它的目标不是单机部署，而是要能够轻松地在集群环境里部署 Kubernetes，并且让这个集群接近甚至达到生产级质量。
+
+而在保持这个高水准的同时，kubeadm 还具有了和 minikube 一样的易用性，只要很少的几条命令，如 init、join、upgrade、reset 就能够完成 Kubernetes 集群的管理维护工作，这让它不仅适用于集群管理员，也适用于开发、测试人员。
+
+### 实验架构
+
+![[Pasted image 20220809224246.png]]
+
+### 准备工作
+
+第一，由于 Kubernetes 使用主机名来区分集群里的节点，所以每个节点的 hostname 必须不能重名。你需要修改“/etc/hostname”这个文件，把它改成容易辨识的名字，比如 Master 节点就叫 master，Worker 节点就叫 worker：
+
+```shell
+sudo vi /etc/hostname
+```
+
+第二，虽然 Kubernetes 目前支持多种容器运行时，但 Docker 还是最方便最易用的一种，所以我们仍然继续使用 Docker 作为 Kubernetes 的底层支持，使用 apt 安装 Docker Engine（可参考第 1 讲）。
+
+安装完成后需要你再对 Docker 的配置做一点修改，在“/etc/docker/daemon.json”里把 cgroup 的驱动程序改成 systemd ，然后重启 Docker 的守护进程，具体的操作我列在了下面：
+
+```shell
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+sudo systemctl enable docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+第三，为了让 Kubernetes 能够检查、转发网络流量，你需要修改 iptables 的配置，启用“br_netfilter”模块：
+
+```shell
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward=1 # better than modify /etc/sysctl.conf
+EOF
+
+sudo sysctl --system
+```
+
+第四，你需要修改“/etc/fstab”，关闭 Linux 的 swap 分区，提升 Kubernetes 的性能：
+
+```shell
+sudo swapoff -a
+sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+```
+
+### 安装kubeadm
+
+在Master跟Worker节点都要安装
+
+```shell
+
+sudo apt install -y apt-transport-https ca-certificates curl
+
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+EOF
+
+sudo apt update
+```
+
+更新了软件仓库，我们就可以用 apt install 获取 kubeadm、kubelet 和 kubectl 这三个安装必备工具了。apt 默认会下载最新版本，但我们也可以指定版本号，比如使用和 minikube 相同的“1.23.3”：
+
+```shell
+
+sudo apt install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
+
+kubeadm version
+kubectl version --client
+
+```
+
+另外按照 Kubernetes 官网的要求，我们最好再使用命令 apt-mark hold ，锁定这三个软件的版本，避免意外升级导致版本错误：
+
+```shell
+
+sudo apt-mark hold kubeadm kubelet kubectl
+
+```
+
+### 下载 Kubernetes 组件镜像
+
+前面我说过，kubeadm 把 apiserver、etcd、scheduler 等组件都打包成了镜像，以容器的方式启动 Kubernetes，但这些镜像不是放在 Docker Hub 上，而是放在 Google 自己的镜像仓库网站 gcr.io，而它在国内的访问很困难，直接拉取镜像几乎是不可能的。
+
+所以我们需要采取一些变通措施，提前把镜像下载到本地。使用命令 kubeadm config images list 可以查看安装 Kubernetes 所需的镜像列表，参数 --kubernetes-version 可以指定版本号：
+
+```shell
+
+kubeadm config images list --kubernetes-version v1.23.3
+
+k8s.gcr.io/kube-apiserver:v1.23.3
+k8s.gcr.io/kube-controller-manager:v1.23.3
+k8s.gcr.io/kube-scheduler:v1.23.3
+k8s.gcr.io/kube-proxy:v1.23.3
+k8s.gcr.io/pause:3.6
+k8s.gcr.io/etcd:3.5.1-0
+k8s.gcr.io/coredns/coredns:v1.8.6
+
+```
+
+从国内的镜像网站下载然后再用 docker tag 改名，能够使用 Shell 编程实现自动化：
+
+```shell
+
+repo=registry.aliyuncs.com/google_containers
+
+for name in `kubeadm config images list --kubernetes-version v1.23.3`; do
+
+    src_name=${name#k8s.gcr.io/}
+    src_name=${src_name#coredns/}
+
+    docker pull $repo/$src_name
+
+    docker tag $repo/$src_name $name
+    docker rmi $repo/$src_name
+done
+
+```
+
+### 安装Master节点
+
+kubeadm 的用法非常简单，只需要一个命令 kubeadm init 就可以把组件在 Master 节点上运行起来，不过它还有很多参数用来调整集群的配置，你可以用 -h 查看。这里我只说一下我们实验环境用到的 3 个参数：
+1. --pod-network-cidr，设置集群里 Pod 的 IP 地址段。
+2. --apiserver-advertise-address，设置 apiserver 的 IP 地址，对于多网卡服务器来说很重要（比如 VirtualBox 虚拟机就用了两块网卡），可以指定 apiserver 在哪个网卡上对外提供服务。
+3. --kubernetes-version，指定 Kubernetes 的版本号。
+
+下面的这个安装命令里，我指定了 Pod 的地址段是“10.10.0.0/16”，apiserver 的服务地址是“192.168.10.210”，Kubernetes 的版本号是“1.23.3”：
+
+```shell
+
+sudo kubeadm init \
+    --pod-network-cidr=10.10.0.0/16 \
+    --apiserver-advertise-address=192.168.10.210 \
+    --kubernetes-version=v1.23.3
+
+```
+
+```shell
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+```
+
+意思是要在本地建立一个“.kube”目录，然后拷贝 kubectl 的配置文件，你只要原样拷贝粘贴就行。
+
+另外还有一个很重要的“kubeadm join”提示，其他节点要加入集群必须要用指令里的 token 和 ca 证书，所以这条命令务必拷贝后保存好：
+
+```shell
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.10.210:6443 --token tv9mkx.tw7it9vphe158e74 \
+  --discovery-token-ca-cert-hash sha256:e8721b8630d5b562e23c010c70559a6d3084f629abad6a2920e87855f8fb96f3
+
+```
+
+安装完成后，你就可以使用 kubectl version、kubectl get node 来检查 Kubernetes 的版本和集群的节点状态了：
+
+```shell
+
+kubectl version
+kubectl get node
+
+```
+
+你会注意到 Master 节点的状态是“NotReady”，这是由于还缺少网络插件，集群的内部网络还没有正常运作。
+
+### 安装Flannel 网络插件
+
+Kubernetes 定义了 CNI 标准，有很多网络插件，这里我选择最常用的 Flannel，可以在它的 GitHub 仓库里（https://github.com/flannel-io/flannel/）找到相关文档。
+
+它安装也很简单，只需要使用项目的“kube-flannel.yml”在 Kubernetes 里部署一下就好了。不过因为它应用了 Kubernetes 的网段地址，你需要修改文件里的“net-conf.json”字段，把 Network 改成刚才 kubeadm 的参数 --pod-network-cidr 设置的地址段。
+
+比如在这里，就要修改成“10.10.0.0/16”：
+
+```shell
+
+  net-conf.json: |
+    {
+      "Network": "10.10.0.0/16",
+      "Backend": {
+        "Type": "vxlan"
+      }
+    }
+```
+
+改好后，你就可以用 kubectl apply 来安装 Flannel 网络了：
+
+```shell
+
+kubectl apply -f kube-flannel.yml
+
+```
+
+稍等一小会，等镜像拉取下来并运行之后，你就可以执行 kubectl get node 来看节点状态：
+
+```shell
+
+kubectl get node
+
+```
+
+这时你应该能够看到 Master 节点的状态是“Ready”，表明节点网络也工作正常了。
+
+### 安装Worker节点
+
+如果你成功安装了 Master 节点，那么 Worker 节点的安装就简单多了，只需要用之前拷贝的那条 kubeadm join 命令就可以了，记得要用 sudo 来执行
+
+```shell
+
+sudo \
+kubeadm join 192.168.10.210:6443 --token tv9mkx.tw7it9vphe158e74 \
+  --discovery-token-ca-cert-hash sha256:e8721b8630d5b562e23c010c70559a6d3084f629abad6a2920e87855f8fb96f3
+
+```
+
+它会连接 Master 节点，然后拉取镜像，安装网络插件，最后把节点加入集群。当然，这个过程中同样也会遇到拉取镜像的问题，你可以如法炮制，提前把镜像下载到 Worker 节点本地，这样安装过程中就不会再有障碍了。Worker 节点安装完毕后，执行 kubectl get node ，就会看到两个节点都是“Ready”状态
+
+token具有时效性，默认为24小时，如果失效了，可以使用
+
+```shell
+kubeadm token create --print-join-command
+```
+
+创建一个新的token
+
+### 安装Console节点
+
+后面 Console 节点的部署工作更加简单，它只需要安装一个 kubectl，然后复制“config”文件就行，你可以直接在 Master 节点上用“scp”远程拷贝，例如：
+
+```shell
+scp `which kubectl` root@192.168.10.208:~/
+scp ~/.kube/config root@192.168.10.208:~/.kube
+```
+
+
+
+
 
 
