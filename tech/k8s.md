@@ -791,8 +791,113 @@ scp `which kubectl` root@192.168.10.208:~/
 scp ~/.kube/config root@192.168.10.208:~/.kube
 ```
 
+## Deloyment
 
+今天要看的 API 对象名字叫“Deployment”，顾名思义，它是专门用来部署应用程序的，能够让应用永不宕机，多用来发布**无状态**的应用，是 Kubernetes 里最常用也是最有用的一个对象。
 
+然 Pod 管理不了自己，那么我们就再创建一个新的对象，由它来管理 Pod，采用和 Job/CronJob 一样的形式——“对象套对象”。
 
+```shell
+kubectl create deploy ngx-dep --image=nginx:alpine --dry-run=client -o yaml > ngx-dep.yaml
+```
 
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ngx-dep
+  name: ngx-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngx-dep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ngx-dep
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx
+        resources: {}
+status: {}
+                    
+```
 
+跟Job类似，
+1. 其中的 template 和 Job 一样，定义了要运行的 Pod 模板。
+2. `replicas` 就是“副本数量”的意思，也就是说，指定要在 Kubernetes 集群里运行多少个 Pod 实例。将replicas设置为0，对应应用的pod数量为0，应用停止服务。这样的方式保存了deployment，如果需要启动应用，将replicas设置为需要的数量即可。
+3. `selector` 它的作用是“筛选”出要被 Deployment 管理的 Pod 对象，下属字段“matchLabels”定义了 Pod 对象应该携带的 label，它必须和“template”里 Pod 定义的“labels”完全相同，否则 Deployment 就会找不到要控制的 Pod 对象，apiserver 也会告诉你 YAML 格式校验错误无法创建。 
+
+![[Pasted image 20220811093833.png]]
+
+```shell
+kubectl apply -f npx-dep.yaml
+
+kubectl get deploy
+kubectl get pod
+
+kubectl scale --replicas=5 deploy ngx-dep
+```
+
+但要注意， kubectl scale 是命令式操作，扩容和缩容只是临时的措施，如果应用需要长时间保持一个确定的 Pod 数量，最好还是编辑 Deployment 的 YAML 文件，改动“replicas”，再以声明式的 kubectl apply 修改对象的状态。
+
+## DaemonSet
+
+[DaemonSet](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/daemonset/)，它会在 Kubernetes 集群的每个节点上都运行一个 Pod，就好像是 Linux 系统里的“守护进程”（Daemon）
+
+有一些业务比较特殊，它们不是完全独立于系统运行的，而是与主机存在“绑定”关系，必须要依附于节点才能产生价值，比如说：
+1. 网络应用（如 kube-proxy），必须每个节点都运行一个 Pod，否则节点就无法加入 Kubernetes 网络。
+2. 监控应用（如 Prometheus），必须每个节点都有一个 Pod 用来监控节点的状态，实时上报信息。
+3. 日志应用（如 Fluentd），必须在每个节点上运行一个 Pod，才能够搜集容器运行时产生的日志数据。安全应用，同样的，每个节点都要有一个 Pod 来执行安全审计、入侵检查、漏洞扫描等工作。
+
+DaemonSet 的目标是在集群的每个节点上运行且仅运行一个 Pod，就好像是为节点配上一只“看门狗”，忠实地“守护”着节点，这就是 DaemonSet 名字的由来
+
+```yaml
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: redis-ds
+  labels:
+    app: redis-ds
+
+spec:
+  selector:
+    matchLabels:
+      name: redis-ds
+
+  template:
+    metadata:
+      labels:
+        name: redis-ds
+    spec:
+      containers:
+      - image: redis:5-alpine
+        name: redis
+        ports:
+        - containerPort: 6379
+```
+
+![[Pasted image 20220811105801.png]]
+
+可以发现`DaemonSet`跟`Deployment`的唯一区别就是没有`replicas`，污点的介绍请参考[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)
+
+“静态 Pod”非常特殊，它不受 Kubernetes 系统的管控，不与 apiserver、scheduler 发生关系，所以是“静态”的。
+
+但既然它是 Pod，也必然会“跑”在容器运行时上，也会有 YAML 文件来描述它，而唯一能够管理它的 Kubernetes 组件也就只有在每个节点上运行的 kubelet 了。
+
+“静态 Pod”的 YAML 文件默认都存放在节点的 /etc/kubernetes/manifests 目录下，它是 Kubernetes 的专用目录。
+
+Kubernetes 的 4 个核心组件 apiserver、etcd、scheduler、controller-manager 原来都以静态 Pod 的形式存在的，这也是为什么它们能够先于 Kubernetes 集群启动的原因。
+
+如果你有一些 DaemonSet 无法满足的特殊的需求，可以考虑使用静态 Pod，编写一个 YAML 文件放到这个目录里，节点的 kubelet 会定期检查目录里的文件，发现变化就会调用容器运行时创建或者删除静态 Pod。
+
+## Service
+
+类似LVS、Nginx，来实现负载均衡，
