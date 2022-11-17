@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "tech/k8s.md",
+            "file": "tech/java-common-mistakes.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/k8s.md",
+                "file": "tech/java-common-mistakes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,7 +86,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tech/k8s.md"
+                "file": "tech/java-common-mistakes.md"
               }
             }
           }
@@ -99,15 +99,15 @@
   },
   "active": "45199df6f5546ee8",
   "lastOpenFiles": [
-    "tech/dsa.md",
-    "tech/docker.md",
-    "tech/this-in-javascript.md",
-    "tech/spring-transaction.md",
-    "tech/manjaro.md",
-    "tech/mac-m1.md",
-    "tech/mysql.md",
+    "tech/java-source-base.md",
+    "tech/java-common-mistakes.md",
+    "tech/image-similarity-flask.md",
+    "tech/cosmos-evmos.md",
+    "Pasted Image 20221117103108_603.jpg",
+    "tech/draw/Drawing 2022-11-17 10.30.28.excalidraw.md",
+    "tech/centos7.md",
     "tech/k8s.md",
-    "tech/kafka.md",
-    "tech/java8.md"
+    "tech/dsa.md",
+    "tech/docker.md"
   ]
 }

@@ -230,7 +230,7 @@ svc_model.fit(data, labels)
 prediction = svc_model.predict(testHist.reshape(1, -1))
 ```
 
-然后我们获取输入图片的lbp，让svm模型识别出对应的label，再从`siamese netwrok`已经筛选出的相似度**90%**以上图片集，再进行label的匹配，即可得到指定较高相似度的图片集合。
+然后我们获取输入图片的lbp，让svm模型识别出对应的label，再从`siamese netwrok`已经筛选出的相似度90%以上图片集，再进行label的匹配，即可得到指定较高相似度的图片集合。
 
 ## 相关链接
 

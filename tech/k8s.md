@@ -900,4 +900,29 @@ Kubernetes 的 4 个核心组件 apiserver、etcd、scheduler、controller-manag
 
 ## Service
 
-类似LVS、Nginx，来实现负载均衡，
+类似LVS、Nginx，来实现负载均衡，Kubernetes 会给它分配一个静态 IP 地址，然后它再去自动管理、维护后面动态变化的 Pod 集合，当客户端访问 Service，它就根据某种策略，把流量转发给后面的某个 Pod。
+
+![[Pasted image 20220817103224.png]]
+
+```shell
+export out="--dry-run=client -o yaml"
+kubectl expose deploy ngx-dep --port=80 --target-port=80 $out
+```
+
+```yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngx-svc
+  
+spec:
+  selector:
+    app: ngx-dep
+    
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+```
+
