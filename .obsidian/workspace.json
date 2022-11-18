@@ -4,28 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "9b1b81268759a437",
+        "id": "ba9039065ce9abe2",
         "type": "tabs",
         "children": [
           {
-            "id": "45199df6f5546ee8",
+            "id": "1d74888d08629c59",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tech/live2d-web.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "cc63bf8f75f92f4a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "tech/docker.md",
+                "file": "tech/java-common-mistakes.md",
                 "mode": "source",
                 "source": false
               }
@@ -73,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 329
+    "width": 462
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -89,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/live2d-web.md",
+                "file": "tech/java-common-mistakes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tech/live2d-web.md"
+                "file": "tech/java-common-mistakes.md"
               }
             }
           }
@@ -117,17 +105,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "45199df6f5546ee8",
+  "active": "1d74888d08629c59",
   "lastOpenFiles": [
+    "tech/intro-to-serverless-functions.md",
+    "tech/media/java-common-mistakes/Pasted image 20221118114928.png",
+    "tech/java-common-mistakes.md",
+    "tech/redis.md",
+    "store/Drawing 2022-11-18 11.05.37.excalidraw.md",
+    "tech/docker.md",
+    "tech/live2d-web.md",
     "tech/hardhat-bsc-demo.md",
     "tech/gradle.md",
-    "tech/java-common-mistakes.md",
-    "tech/hyperledger-fabric.md",
-    "tech/centos7.md",
-    "tech/functional-programming-in-javascript.md",
-    "tech/flask-todolist.md",
-    "tech/debian.md",
-    "tech/curl.md",
-    "tech/build-my-site.md"
+    "tech/hyperledger-fabric.md"
   ]
 }

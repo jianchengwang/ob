@@ -914,9 +914,427 @@ private static void fileChannelOperation() throws IOException {
 
 最后还有一点需要注意，如果需要跨平台使用序列化的数据，那么除了两端使用的算法要一致外，还可能会遇到不同语言对数据类型的兼容问题。这，也是经常踩坑的一个地方。如果你有相关需求，可以多做实验、多测试。
 
-### 使用Java8的日期时间类
+## 使用Java8的日期时间类
 
 ![[Pasted image 20221117182808.png]]
+
+## OOM
+
+### 同一对象多分拷贝
+
+在进行容量评估时，我们不能认为一份数据在程序内存中也是一份。100M 的数据加载到程序内存中，变为 Java 的数据结构就已经占用了 200M 堆内存；这些数据经过 JDBC、MyBatis 等框架其实是加载了 2 份，然后领域模型、DTO 再进行转换可能又加载了 2 次；最终，占用的内存达到了 200M*4=800M。
+
+所以涉及到数据库查询的时候，要避免无参数的全表扫描，因为我们无法预计表数据到底多多大。
+
+### WeakHashMap 不等于不会 OOM
+
+WeakHashMap 的特点是 Key 在哈希表内部是弱引用的，当没有强引用指向这个 Key 之后，Entry 会被 GC，即使我们无限往 WeakHashMap 加入数据，只要 Key 不再使用，也就不会 OOM。
+
+说到了强引用和弱引用，我先和你回顾下 Java 中引用类型和垃圾回收的关系：
+1. 垃圾回收器不会回收有强引用的对象；
+2. 在内存充足时，垃圾回收器不会回收具有软引用的对象；
+3. 垃圾回收器只要扫描到了具有弱引用的对象就会回收，WeakHashMap 就是利用了这个特点。
+
+WeakHashMap 的 Key 虽然是弱引用，但是其 Value 却持有 Key 中对象的强引用，Value 被 Entry 引用，Entry 被 WeakHashMap 引用，最终导致 Key 无法回收。解决方案就是让 Value 变为弱引用，使用 WeakReference 来包装 UserProfile 即可
+
+```java
+private Map<User, WeakReference<UserProfile>> cache2 = new WeakHashMap<>();
+
+User user = new User(userName + i);
+        //这次，我们使用弱引用来包装UserProfile
+        cache2.put(user, new WeakReference(new UserProfile(user, "location" + i)));
+```
+
+当然，还有一种办法就是，让 Value 也就是 UserProfile 不再引用 Key，而是重新 new 出一个新的 User 对象赋值给 UserProfile：
+
+```java
+User user = new User(userName + i); 
+cache.put(user, new UserProfile(new User(user.getName()), "location" + i));
+```
+
+### Tomcat参数配置导致
+
+在[Tomcat 文档](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)中有提到，这个 Socket 的读缓冲，也就是 readBuffer 默认是 8192 字节。显然，问题出在了 headerBufferSize 上：
+
+```java
+inputBuffer = new Http11InputBuffer(request, protocol.getMaxHttpHeaderSize(),
+        protocol.getRejectIllegalHeaderName(), httpParser);
+```
+
+发行配置文件有如下配置，
+
+```properties
+server.max-http-header-size=10000000
+```
+
+发现，这位同学出现`java.lang.IllegalArgumentException: Request header is too large`异常，然后网上搜索了下解决方案，
+
+所以一定要根据实际需求来修改参数配置，可以考虑预留 2 到 5 倍的量。容量类的参数背后往往代表了资源，设置超大的参数就有可能占用不必要的资源，在并发量大的时候因为资源大量分配导致 OOM
+
+### 补充
+
+我建议你为生产系统的程序配置 JVM 参数启用详细的 GC 日志，方便观察垃圾收集器的行为，并开启 HeapDumpOnOutOfMemoryError，以便在出现 OOM 时能自动 Dump 留下第一问题现场。对于 JDK8，你可以这么设置 
+
+```java
+XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=. -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M
+```
+
+## 反射，注解，泛型遇到OOP
+
+### 反射调用不是根据参数决定
+
+反射的功能包括，在运行时动态获取类和类成员定义，以及动态读取属性调用方法。也就是说，针对类动态调用方法，不管类中字段和方法怎么变动，我们都可以用相同的规则来读取信息和执行方法
+
+反射的起点是 Class 类，Class 类提供了各种方法帮我们查询它的信息。你可以通过这个[文档](https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html)，了解每一个方法的作用。
+
+反射调用由方法签名决定，跟传入参数的类型无关，
+
+```java
+
+@Slf4j
+public class ReflectionIssueApplication {
+  private void age(int age) {
+      log.info("int age = {}", age);
+  }
+
+  private void age(Integer age) {
+      log.info("Integer age = {}", age);
+  }
+}
+
+getClass().getDeclaredMethod("age", Integer.TYPE).invoke(this, Integer.valueOf("36")); // int age
+
+getClass().getDeclaredMethod("age", Integer.class).invoke(this, Integer.valueOf("36")); // Integer age
+```
+
+### 泛型类型擦除多出桥接方法
+
+Java 的泛型类型在编译后擦除为 Object。虽然子类指定了父类泛型 T 类型是 String，但编译后 T 会被擦除成为 Object，所以父类 setValue 方法的入参是 Object，value 也是 Object。如果子类 Child2 的 setValue 方法要覆盖父类的 setValue 方法，那入参也必须是 Object。所以，编译器会为我们生成一个所谓的 bridge 桥接方法，你可以使用 javap 命令来反编译编译后的 Child2 类的 class 字节码：
+
+```
+javap -c /Users/zhuye/Documents/common-mistakes/target/classes/org/geekbang/time/commonmistakes/advancedfeatures/demo3/Child2.class
+Compiled from "GenericAndInheritanceApplication.java"
+class org.geekbang.time.commonmistakes.advancedfeatures.demo3.Child2 extends org.geekbang.time.commonmistakes.advancedfeatures.demo3.Parent<java.lang.String> {
+  org.geekbang.time.commonmistakes.advancedfeatures.demo3.Child2();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method org/geekbang/time/commonmistakes/advancedfeatures/demo3/Parent."<init>":()V
+       4: return
+
+
+  public void setValue(java.lang.String);
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #3                  // String Child2.setValue called
+       5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: aload_0
+       9: aload_1
+      10: invokespecial #5                  // Method org/geekbang/time/commonmistakes/advancedfeatures/demo3/Parent.setValue:(Ljava/lang/Object;)V
+      13: return
+
+
+  public void setValue(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #6                  // class java/lang/String
+       5: invokevirtual #7                  // Method setValue:(Ljava/lang/String;)V
+       8: return
+}
+```
+
+通过 getDeclaredMethods 方法获取到所有方法后，必须同时根据方法名 setValue 和非 isBridge 两个条件过滤，才能实现唯一过滤；使用 Stream 时，如果希望只匹配 0 或 1 项的话，可以考虑配合 ifPresent 来使用 findFirst 方法。
+
+```java
+Arrays.stream(child2.getClass().getDeclaredMethods())
+        .filter(method -> method.getName().equals("setValue") && !method.isBridge())
+        .findFirst().ifPresent(method -> {
+    try {
+        method.invoke(chi2, "test");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+});
+```
+
+getMethods 和 getDeclaredMethods 是有区别的，前者可以查询到父类方法，后者只能查询到当前类。反射进行方法调用要注意过滤桥接方法。
+
+### 注解可以继承吗
+
+如果你再仔细阅读一下[@Inherited](https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Inherited.html) 的文档就会发现，@Inherited 只能实现类上的注解继承。要想实现方法上注解的继承，你可以通过反射在继承链上找到方法上的注解。但，这样实现起来很繁琐，而且需要考虑桥接方法。
+
+好在 Spring 提供了 AnnotatedElementUtils 类，来方便我们处理注解的继承问题。这个类的 findMergedAnnotation 工具方法，可以帮助我们找出父类和接口、父类方法和接口方法上的注解，并可以处理桥接方法，实现一键找到继承链的注解：
+
+```java
+Child child = new Child();
+log.info("ChildClass:{}", getAnnotationValue(AnnotatedElementUtils.findMergedAnnotation(child.getClass(), MyAnnotation.class)));
+log.info("ChildMethod:{}", getAnnotationValue(AnnotatedElementUtils.findMergedAnnotation(child.getClass().getMethod("foo"), MyAnnotation.class)));
+```
+
+并注意各种 getXXX 方法和 findXXX 方法的区别，详情查看[Spring 的文档](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/annotation/AnnotatedElementUtils.html)。
+
+编译后的代码和原始代码并不完全一致，编译器可能会做一些优化，加上还有诸如 AspectJ 等编译时增强框架，使用反射动态获取类型的元数据可能会和我们编写的源码有差异，这点需要特别注意。你可以在反射中多写断言，遇到非预期的情况直接抛异常，避免通过反射实现的业务逻辑不符合预期。
+
+### 补充
+
+1、泛型类型擦除后会生成一个 bridge 方法，这个方法同时又是 synthetic 方法。除了泛型类型擦除，你知道还有什么情况编译器会生成 synthetic 方法吗？
+
+内部类会用到，类在JVM是最顶级的，即使是内部类，编译以后，都会存在外部类$1这样的class文件；外部类是能完全访问内部的方法的，即使是private，但编译后编程2个文件了，怎么访问的，就是通过synthetic标识位实现的。 在额外分享两篇R大关于逃逸分析的文章，里面涉及到了synthetic。
+http://mail.openjdk.java.net/pipermail/hotspot-compiler-dev/2016-September/024535.html
+http://mail.openjdk.java.net/pipermail/hotspot-compiler-dev/2016-September/024535.html
+
+2、关于注解继承问题，你觉得 Spring 的常用注解 @Service、@Controller 是否支持继承呢？
+
+Spring 的常用注解 @Service、@Controller，不支持继承。这些注解只支持放到具体的（非接口非抽象）顶层类上（来让它们成为 Bean），如果支持继承会非常不灵活而且容易出错。
+
+## IOC & AOP
+
+Spring Core 中最核心的就是 IoC（控制反转）和 AOP（面向切面编程）。
+
+IoC，其实就是一种设计思想。使用 Spring 来实现 IoC，意味着将你设计好的对象交给 Spring 容器控制，而不是直接在对象内部控制。那，为什么要让容器来管理对象呢？或许你能想到的是，使用 IoC 方便、可以实现解耦。但在我看来，相比于这两个原因，更重要的是 IoC 带来了更多的可能性。
+
+如果以容器为依托来管理所有的框架、业务对象，我们不仅可以无侵入地调整对象的关系，还可以无侵入地随时调整对象的属性，甚至是实现对象的替换。这就使得框架开发者在程序背后实现一些扩展不再是问题，带来的可能性是无限的。比如我们要监控的对象如果是 Bean，实现就会非常简单。所以，这套容器体系，不仅被 Spring Core 和 Spring Boot 大量依赖，还实现了一些外部框架和 Spring 的无缝整合。
+
+AOP，体现了松耦合、高内聚的精髓，在切面集中实现横切关注点（缓存、权限、日志等），然后通过切点配置把代码注入合适的地方。切面、切点、增强、连接点，是 AOP 中非常重要的概念，也是我们这两讲会大量提及的。
+
+为方便理解，我们把 Spring AOP 技术看作为蛋糕做奶油夹层的工序。如果我们希望找到一个合适的地方把奶油注入蛋糕胚子中，那应该如何指导工人完成操作呢？
+
+![[Pasted image 20221118111703.png]]
+
+1. 首先，我们要提醒他，只能往蛋糕胚子里面加奶油，而不能上面或下面加奶油。这就是连接点（Join point），对于 Spring AOP 来说，连接点就是方法执行。
+2. 然后，我们要告诉他，在什么点切开蛋糕加奶油。比如，可以在蛋糕坯子中间加入一层奶油，在中间切一次；也可以在中间加两层奶油，在 1/3 和 2/3 的地方切两次。这就是切点（Pointcut），Spring AOP 中默认使用 AspectJ 查询表达式，通过在连接点运行查询表达式来匹配切入点。
+3. 接下来也是最重要的，我们要告诉他，切开蛋糕后要做什么，也就是加入奶油。这就是增强（Advice），也叫作通知，定义了切入切点后增强的方式，包括前、后、环绕等。Spring AOP 中，把增强定义为拦截器。
+4. 最后，我们要告诉他，找到蛋糕胚子中要加奶油的地方并加入奶油。为蛋糕做奶油夹层的操作，对 Spring AOP 来说就是切面（Aspect），也叫作方面。切面 = 切点 + 增强。
+
+### 单例的 Bean 如何注入 Prototype 的 Bean
+
+Spring 创建的 Bean 默认是单例的，但当 Bean 遇到继承的时候，可能会忽略这一点，开发基类的架构师将基类设计为有状态的，但并不知道子类是怎么使用基类的；而开发子类的同学，没多想就直接标记了 @Service，让类成为了 Bean，通过 @Autowired 注解来注入这个服务。但这样设置后，有状态的基类就可能产生内存泄露或线程安全问题。
+
+在为类标记上 @Service 注解把类型交由容器管理前，首先评估一下类是否有状态，然后为 Bean 设置合适的 Scope
+
+```java
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+```
+
+但是还是内存泄漏，因为Controller 标记了 @RestController 注解，而 @RestController 注解 =@Controller 注解 +@ResponseBody 注解，又因为 @Controller 标记了 @Component 元注解，所以 @RestController 注解其实也是一个 Spring Bean
+
+```java
+//@RestController注解=@Controller注解+@ResponseBody注解@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Controller
+@ResponseBody
+public @interface RestController {}
+
+//@Controller又标记了@Component元注解
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Controller {}
+```
+
+Bean 默认是单例的，所以单例的 Controller 注入的 Service 也是一次性创建的，即使 Service 本身标识了 prototype 的范围也没用。
+
+修复方式是，让 Service 以代理方式注入。这样虽然 Controller 本身是单例的，但每次都能从代理获取 Service。这样一来，prototype 范围的配置才能真正生效：
+
+```java
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+```
+
+当然，如果不希望走代理的话还有一种方式是，每次直接从 ApplicationContext 中获取 Bean：
+
+```java
+@Autowired  
+List<SayService> sayServiceList;
+@Autowired
+private ApplicationContext applicationContext;
+@GetMapping("test2")
+public void test2() {
+applicationContext.getBeansOfType(SayService.class).values().forEach(SayService::say);
+}
+```
+
+如果细心的话，你可以发现另一个潜在的问题。这里 Spring 注入的 SayService 的 List，第一个元素是 SayBye，第二个元素是 SayHello。但，我们更希望的是先执行 Hello 再执行 Bye，所以注入一个 List Bean 时，需要进一步考虑 Bean 的顺序或者说优先级。大多数情况下顺序并不是那么重要，但对于 AOP，顺序可能会引发致命问题
+
+### 监控切面顺序
+
+如果一组相同类型的 Bean 是有顺序的，需要明确使用 @Order 注解来设置顺序
+
+我们知道，切面本身是一个 Bean，Spring 对不同切面增强的执行顺序是由 Bean 优先级决定的，具体规则是：
+
+1. 入操作（Around（连接点执行前）、Before），切面优先级越高，越先执行。一个切面的入操作执行完，才轮到下一切面，所有切面入操作执行完，才开始执行连接点（方法）。
+2. 出操作（Around（连接点执行后）、After、AfterReturning、AfterThrowing），切面优先级越低，越先执行。一个切面的出操作执行完，才轮到下一切面，直到返回到调用点。
+3. 同一切面的 Around 比 After、Before 先执行。
+4. 对于 Bean 可以通过 @Order 注解来设置优先级，查看 @Order 注解和 Ordered 接口源码可以发现，默认情况下 Bean 的优先级为最低优先级，其值是 Integer 的最大值。其实，值越大优先级反而越低，这点比较反直觉
+
+### 补充
+
+1、除了通过 @Autowired 注入 Bean 外，还可以使用 @Inject 或 @Resource 来注入 Bean。你知道这三种方式的区别是什么吗？
+
+@Autowired，是 Spring 的注解，优先按照类型注入。当无法确定具体注入类型的时候，可以通过 @Qualifier 注解指定 Bean 名称。
+
+@Inject：是 JSR330 规范的实现，也是根据类型进行自动装配的，这一点和 @Autowired 类似。如果需要按名称进行装配，则需要配合使用 @Named。@Autowired 和 @Inject 的区别在于，前者可以使用 required=false 允许注入 null，后者允许注入一个 Provider 实现延迟注入。
+
+@Resource：JSR250 规范的实现，如果不指定 name 优先根据名称进行匹配（然后才是类型），如果指定 name 则仅根据名称匹配。
+
+1、当 Bean 产生循环依赖时，比如 BeanA 的构造方法依赖 BeanB 作为成员需要注入，BeanB 也依赖 BeanA，你觉得会出现什么问题呢？又有哪些解决方式呢？
+
+Bean 产生循环依赖，主要包括两种情况：
+
+一种是注入属性或字段涉及循环依赖，Spring 内部通过三个 Map 的方式解决了这个问题，不会出错，可以参考这篇[文章](https://cloud.tencent.com/developer/article/1497692)
+
+另一种是构造方法注入涉及循环依赖，这种解决方法一般为，改为属性或字段注入；使用 @Lazy 延迟注入。比如如下代码：
+
+```java
+@Component
+public class TestC {
+    @Getter
+    private TestD testD;
+
+    @Autowired
+    public TestC(@Lazy TestD testD) {
+        this.testD = testD;
+    }
+}
+```
+
+其实，这种 @Lazy 方式注入的就不是实际的类型了，而是代理类，获取的时候通过代理去拿值（实例化）。所以，它可以解决循环依赖无法实例化的问题
+
+## Spring其他坑点
+
+### 代理问题
+
+Spring Boot 2.x 默认使用 CGLIB 的方式，但通过继承实现代理有个问题是，无法继承 final 的类。因为，ApacheHttpClient 类就是定义为了 final：
+
+```java
+public final class ApacheHttpClient implements Client {
+```
+
+为解决这个问题，我们把配置参数 proxy-target-class 的值修改为 false，以切换到使用 JDK 动态代理的方式：
+
+```java
+spring.aop.proxy-target-class=false
+```
+
+### 配置优先级
+
+要想查询 Spring 中所有的配置，我们需要以环境 Environment 接口为入口。接下来，我就与你说说 Spring 通过环境 Environment 抽象出的 Property 和 Profile：
+
+1. 针对 Property，又抽象出各种 PropertySource 类代表配置源。一个环境下可能有多个配置源，每个配置源中有诸多配置项。在查询配置信息时，需要按照配置源优先级进行查询。
+2. Profile 定义了场景的概念。通常，我们会定义类似 dev、test、stage 和 prod 等环境作为不同的 Profile，用于按照场景对 Bean 进行逻辑归属。同时，Profile 和配置文件也有关系，每个环境都有独立的配置文件，但我们只会激活某一个环境来生效特定环境的配置文件。
+
+![[Pasted image 20221118114505.png]]
+
+接下来，我们重点看看 Property 的查询过程。对于非 Web 应用，Spring 对于 Environment 接口的实现是 StandardEnvironment 类。我们通过 Spring 注入 StandardEnvironment 后循环 getPropertySources 获得的 PropertySource，来查询所有的 PropertySource 中 key 是 user.name 或 management.server.port 的属性值；然后遍历 getPropertySources 方法，获得所有配置源并打印出来：
+
+```java
+
+@Autowired
+private StandardEnvironment env;
+@PostConstruct
+public void init(){
+    Arrays.asList("user.name", "management.server.port").forEach(key -> {
+         env.getPropertySources().forEach(propertySource -> {
+                    if (propertySource.containsProperty(key)) {
+                        log.info("{} -> {} 实际取值：{}", propertySource, propertySource.getProperty(key), env.getProperty(key));
+                    }
+                });
+    });
+
+    System.out.println("配置优先级：");
+    env.getPropertySources().stream().forEach(System.out::println);
+}
+```
+
+![[Pasted image 20221118114928.png]]
+
+## 代码复用
+
+### 模板设计模式
+
+有多个并行的类实现相似的代码逻辑。我们可以考虑提取相同逻辑在父类中实现，差异逻辑通过抽象方法留给子类实现。使用类似的模板方法把相同的流程和逻辑固定成模板，保留差异的同时尽可能避免代码重复。同时，可以使用 Spring 的 IoC 特性注入相应的子类，来避免实例化子类时的大量 if…else 代码。
+
+工厂模式 + 模板方法模式，不仅消除了重复代码，还避免了修改既有代码的风险
+
+个人观点，不要盲信什么设计模式，代码到一定程度考虑封装，其实很多设计模式，只是名词不懂，实际上遇到的时候也知道如果封装，
+
+### 利用注解 + 反射消除重复代码
+
+使用硬编码的方式重复实现相同的数据处理算法。我们可以考虑把规则转换为自定义注解，作为元数据对类或对字段、方法进行描述，然后通过反射动态读取这些元数据、字段或调用方法，实现规则参数和规则定义的分离。也就是说，把变化的部分也就是规则的参数放入注解，规则的定义统一处理。
+
+### 属性拷贝工具消除重复代码
+
+```java
+ComplicatedOrderDTO orderDTO = new ComplicatedOrderDTO();
+ComplicatedOrderDO orderDO = new ComplicatedOrderDO();
+BeanUtils.copyProperties(orderDTO, orderDO, "id");
+return orderDO;
+```
+
+不过，BeanUtils不推荐使用，这个工具是在运行时转换的，遇到同名不同类型的字段不会转换，而且没有错误提示，可能会有坑，推荐使用mapstruct，这个是在编译器生成转换代码，对于普通类型会自动转换（如int和String），对于不能自动转换的会有错误提示，且能看到生成的代码
+
+最后，我们应该把代码重复度作为评估一个项目质量的重要指标，如果一个项目几乎没有任何重复代码，那么它内部的抽象一定是非常好的。在做项目重构的时候，你也可以以消除重复为第一目标去考虑实现。
+
+## 生产就绪
+
+第一，提供健康检测接口。传统采用 ping 的方式对应用进行探活检测并不准确。有的时候，应用的关键内部或外部依赖已经离线，导致其根本无法正常工作，但其对外的 Web 端口或管理端口是可以 ping 通的。我们应该提供一个专有的监控检测接口，并尽可能触达一些内部组件。
+
+第二，暴露应用内部信息。应用内部诸如线程池、内存队列等组件，往往在应用内部扮演了重要的角色，如果应用或应用框架可以对外暴露这些重要信息，并加以监控，那么就有可能在诸如 OOM 等重大问题暴露之前发现蛛丝马迹，避免出现更大的问题。
+
+第三，建立应用指标 Metrics 监控。Metrics 可以翻译为度量或者指标，指的是对于一些关键信息以可聚合的、数值的形式做定期统计，并绘制出各种趋势图表。这里的指标监控，包括两个方面：一是，应用内部重要组件的指标监控，比如 JVM 的一些指标、接口的 QPS 等；二是，应用的业务数据的监控，比如电商订单量、游戏在线人数
+
+## 新版本特性
+
+比如函数式编程等，流处理([analyze-java-stream-operations](https://www.jetbrains.com/help/idea/analyze-java-stream-operations.html))等，
+
+函数式接口是一种只有单一抽象方法的接口，使用 @FunctionalInterface 来描述，可以隐式地转换成 Lambda 表达式。使用 Lambda 表达式来实现函数式接口，不需要提供类名和方法定义，通过一行代码提供函数式接口的实例，就可以让函数成为程序中的头等公民，可以像普通数据一样作为参数传递，而不是作为一个固定的类中的固定方法。
+
+## 排查工具
+
+### JDK自带工具
+
+![[Pasted image 20221118171943.png]]
+
+### Jvm工具
+
+[VisualVM](https://visualvm.github.io/download.html) 
+[Arthas](https://arthas.aliyun.com/)
+[Bistoury](https://github.com/qunarcorp/bistoury)
+[Fastthread](https://fastthread.io/)
+[MAT](https://www.eclipse.org/mat/)
+
+我们再来看看快照。这里的“快照”是指，应用进程在某一时刻的快照。通常情况下，我们会为生产环境的 Java 应用设置 -XX:+HeapDumpOnOutOfMemoryError 和 -XX:HeapDumpPath=…这 2 个 JVM 参数，用于在出现 OOM 时保留堆快照。这个课程中，我们也多次使用 MAT 工具来分析堆快照。
+
+### 压测工具
+
+[ab](https://httpd.apache.org/)
+[wrk](https://github.com/wg/wrk)
+[jmeter](https://jmeter.apache.org/)
+
+### 监控
+
+[Prometheus](https://prometheus.io/docs/instrumenting/exporters/)
+[micrometer](https://micrometer.io/)
+
+### Linux工具
+
+主机层面的问题，可以使用工具排查：
+1. CPU 相关问题，可以使用 top、vmstat、pidstat、ps 等工具排查；
+2. 内存相关问题，可以使用 free、top、ps、vmstat、cachestat、sar 等工具排查；
+3. IO 相关问题，可以使用 lsof、iostat、pidstat、sar、iotop、df、du 等工具排查；
+4. 网络相关问题，可以使用 ifconfig、ip、nslookup、dig、ping、tcpdump、iptables 等工具排查。
+
+### 网络协议
+
+[wireshark](https://www.wireshark.org/)
+
+
+
+
+
+
+
 
 
 
