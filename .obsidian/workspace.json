@@ -1,0 +1,133 @@
+{
+  "main": {
+    "id": "6481d73eb89179a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "9b1b81268759a437",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "45199df6f5546ee8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "tech/live2d-web.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "cc63bf8f75f92f4a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "tech/docker.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "538f1ed9c77b98bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "6dab04e7609360f4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "977f6da61281cf1c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "daefca60fe25a9e5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 329
+  },
+  "right": {
+    "id": "4261372f0e5bd4c6",
+    "type": "split",
+    "children": [
+      {
+        "id": "d4129f61b73bb368",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "677f27949419e4a7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "tech/live2d-web.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "168db2bcc2796b13",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "tech/live2d-web.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "45199df6f5546ee8",
+  "lastOpenFiles": [
+    "tech/hardhat-bsc-demo.md",
+    "tech/gradle.md",
+    "tech/java-common-mistakes.md",
+    "tech/hyperledger-fabric.md",
+    "tech/centos7.md",
+    "tech/functional-programming-in-javascript.md",
+    "tech/flask-todolist.md",
+    "tech/debian.md",
+    "tech/curl.md",
+    "tech/build-my-site.md"
+  ]
+}
