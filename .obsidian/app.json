@@ -5,5 +5,11 @@
   "spellcheckLanguages": [
     "zh-CN",
     "en-AU"
-  ]
+  ],
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "newFileLocation": "root",
+  "newFileFolderPath": "tech/media",
+  "attachmentFolderPath": "./",
+  "alwaysUpdateLinks": true
 }

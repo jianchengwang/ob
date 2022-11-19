@@ -11,7 +11,7 @@ tags:
 
 <!--more-->
 
-![[Pasted image 20220810172313.png]]
+![[../media/dsa/Pasted image 20220810172313.png]]
 
 ## 数组
 
