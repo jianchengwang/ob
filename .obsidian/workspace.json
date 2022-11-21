@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "7d6b70b4ccf5d08c",
+        "id": "57afaa8b8b5f4c7b",
         "type": "tabs",
         "children": [
           {
-            "id": "6118623da2194439",
+            "id": "be866f89eb4d7971",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "mysite/about.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -77,7 +73,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mysite/about.md",
+                "file": "tech/hardhat-bsc-demo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +90,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mysite/about.md"
+                "file": "tech/hardhat-bsc-demo.md"
               }
             }
           }
@@ -105,17 +101,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "6118623da2194439",
+  "active": "977f6da61281cf1c",
   "lastOpenFiles": [
-    "store/大荒.md",
+    "tech/algo-red-black-tree.md",
+    "tech/build-my-site.md",
+    "store/长安乱.md",
+    "store/温柔刀.md",
+    "store/明月泪.md",
+    "store/断刀残雪.md",
     "mysite/about.md",
+    "store/大荒.md",
     "tech/java-common-mistakes.md",
-    "README.md",
-    "media/k8s/Pasted image 20220809144441.png",
-    "tech/media/java-common-mistakes/Pasted image 20221118171943 1.png",
-    "tech/media/java-common-mistakes/Pasted image 20221118114928 1.png",
-    "tech/media/java-common-mistakes/Pasted image 20221118114505 1.png",
-    "tech/media/java-common-mistakes/Pasted image 20221118111703 1.png",
-    "tech/media/java-common-mistakes/Pasted image 20221117182808 1.png"
+    "README.md"
   ]
 }
