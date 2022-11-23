@@ -3,10 +3,9 @@ title: vps
 slug: vps
 author: [jianchengwang]
 date: 2019-04-09
-excerpt: "VPS厂商很多，如果使用vultr厂商注册新用户的话，请戳，[vultr推广连接](https://www.vultr.com/?ref=7567014)，如果使用阿里云的话，请戳， 阿里云大使"
+excerpt: "VPS厂商很多，如果使用vultr厂商注册新用户的话，请戳我的推荐邀请链接"
 draft: true
-tags: 
-- network
+tags: [network]
 ---
 
 VPS厂商很多，如果使用vultr厂商注册新用户的话，请戳，[vultr推广连接](https://www.vultr.com/?ref=7567014)，如果使用阿里云的话，请戳， 阿里云大使

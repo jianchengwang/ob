@@ -3,13 +3,12 @@ title: functional-programming-in-javascript
 slug: functional-programming-in-javascript
 author: [jianchengwang]
 date: 2019-12-05
-excerpt: "今天瞄了下 `just enough functional programming in javascript` 视频感觉还不错，如果你也感兴趣的话"
+excerpt: "今天瞄了下just enough functional programming in javascript视频感觉还不错，如果你也感兴趣的话"
 draft: false
-tags: 
-- frontend
+tags: [frontend]
 ---
 
-今天瞄了下 `just enough functional programming in javascript` 视频感觉还不错，如果你也感兴趣的话, [请戳](<https://egghead.io/courses/just-enough-functional-programming-in-javascript>)
+今天瞄了下`just enough functional programming in javascript`视频感觉还不错，如果你也感兴趣的话, [请戳](<https://egghead.io/courses/just-enough-functional-programming-in-javascript>)
 
 函数式编程是一种编程的模式，在这种编程模式中最常用的函数和表达式。它强调在编程的时候用函数的方式思考问题，函数也与其他数据类型一样，处于平等地位。可以将函数作为参数传入另一个函数，也可以作为别的函数的返回值。函数式编程倾向于用一系列嵌套的函数来描述运算过程。
 

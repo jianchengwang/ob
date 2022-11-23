@@ -3,13 +3,12 @@ title: debian
 slug: debian
 author: [jianchengwang]
 date: 2019-10-09
-excerpt: "新公司配置的笔记本是 `Win` 系统，因为本人习惯 `Linux` 系统，所以就装了个 `Debian` 子系统玩一下。"
+excerpt: "新公司配置的笔记本是Window系统，因为本人习惯Linux系统，所以就装了个Debian子系统玩一下。"
 draft: false
-tags: 
-- linux
+tags: [linux]
 ---
 
-新公司配置的笔记本是 `Win` 系统，因为本人习惯 `Linux` 系统，所以就装了个 `Debian` 子系统玩一下。
+新公司配置的笔记本是 `Window` 系统，因为本人习惯 `Linux` 系统，所以就装了个 `Debian` 子系统玩一下。
 
 最早之前用 `Deepin` 是基于 `Debian` 的，后面用 `Manjaro` 了，忘得差不多了，这里做个记录，方便以后查阅。
 

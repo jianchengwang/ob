@@ -3,10 +3,9 @@ title: ext-webcomponents-vue
 slug: ext-webcomponents-vue
 author: [jianchengwang]
 date: 2021-04-24
-excerpt: "[**Extjs**](https://www.sencha.com/products/extjs/)，是一个富客户端的前端框架，N年前挺火的，我刚实习那会，公司是使用extjs4作为前端的组件，那时候这个框架就已经有`mvc`的设计概念了，对于后端开发来说很友好，容易上手，而且提供了一系列开箱即用的UI组件，尤其是**Grid**组件，而且官网文档一应俱全，面面俱到，极大的提高了开发效率。不过后面因为开源协议，导致大量开发者流失，现在的前端也基本是Angular，React**，**Vue三足鼎立了。"
+excerpt: "Extjs，是一个富客户端的前端框架，N年前挺火的，对于后端开发来说很友好，容易上手，而且提供了一系列开箱即用的UI组件，尤其是Grid组件，而且官网文档一应俱全，面面俱到，极大的提高了开发效率。"
 draft: false
-tags: 
-- frontend
+tags: [frontend]
 ---
 
 [**Extjs**](https://www.sencha.com/products/extjs/)，是一个富客户端的前端框架，N年前挺火的，我刚实习那会，公司是使用extjs4作为前端的组件，那时候这个框架就已经有`mvc`的设计概念了，对于后端开发来说很友好，容易上手，而且提供了一系列开箱即用的UI组件，尤其是**Grid**组件，而且官网文档一应俱全，面面俱到，极大的提高了开发效率。不过后面因为开源协议，导致大量开发者流失，现在的前端也基本是Angular，React**，**Vue三足鼎立了。

@@ -3,13 +3,12 @@ title: es6
 slug: es6
 author: [jianchengwang]
 date: 2019-12-09
-excerpt: "现代浏览器基本都支持 `ES6` 大部分特性，如果你想知道有哪些浏览器支持 `ES6` 的特性"
+excerpt: "现代浏览器基本都支持ES6大部分特性，如果你想知道有哪些浏览器支持ES6的特性"
 draft: false
-tags: 
-- frontend
+tags: [frontend]
 ---
 
-现代浏览器基本都支持 `ES6` 大部分特性，如果你想知道有哪些浏览器支持 `ES6` 的特性，[请戳](<https://kangax.github.io/compat-table/es6/>)
+现代浏览器基本都支持`ES6`大部分特性，如果你想知道有哪些浏览器支持`ES6`的特性，[请戳](<https://kangax.github.io/compat-table/es6/>)
 
 `Node` 是 JavaScript 的服务器运行环境（runtime）。它对 ES6 的支持度更高。除了那些默认打开的功能，还有一些语法功能已经实现了，但是默认没有打开。
 
@@ -17,7 +16,7 @@ tags:
 node --v8-options | grep harmony
 ```
 
-而且我们还有`Babel` 转码器，可以很方便地将 `ES6` 代码转换成 `ES5` 代码。
+而且我们还有`Babel`转码器，可以很方便地将`ES6`代码转换成`ES5`代码。
 
 有兴趣可以看下阮一峰大佬的ECMAScript6入门，内容很详细明了，最底下有相关链接，我这里只是简单的学习记录，方便后面查阅。
 

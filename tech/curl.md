@@ -3,10 +3,9 @@ title: curl
 slug: curl
 author: [jianchengwang]
 date: 2019-11-20
-excerpt: "[curl](https://curl.haxx.se/)是一种命令行工具，作用是发出网络请求，然后获取数据，显示在标准输出`stdout`上面。最近学习 `oauth2` 经常需要用到此命令进行测试，所以这里简单记录下。"
+excerpt: "curl是一种命令行工具，作用是发出网络请求，然后获取数据，显示在标准输出stdout上面。"
 draft: false
-tags: 
-- linux
+tags: [linux]
 ---
 
 [curl](https://curl.haxx.se/)是一种命令行工具，作用是发出网络请求，然后获取数据，显示在标准输出`stdout`上面。最近学习 `oauth2` 经常需要用到此命令进行测试，所以这里简单记录下。

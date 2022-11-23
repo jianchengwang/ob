@@ -3,10 +3,9 @@ title: tlcl
 slug: tlcl
 author: [jianchengwang]
 date: 2020-07-18
-excerpt: "最近学习**Linux Command** ，瞄了下下 **TLCL** 文档，这里做个记录，感兴趣的可以去看下"
+excerpt: "最近学习Linux Command ，瞄了下下TLCL文档，这里做个记录，感兴趣的可以去看下"
 draft: false
-tags: 
-- linux
+tags: [linux]
 ---
 
 最近学习**Linux Command** ，瞄了下下 **TLCL** 文档，这里做个记录，感兴趣的可以去看下

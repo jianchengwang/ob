@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "57afaa8b8b5f4c7b",
+        "id": "7a6ffc7949b860cd",
         "type": "tabs",
         "children": [
           {
-            "id": "be866f89eb4d7971",
+            "id": "2df25486d021dd1f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -61,7 +57,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 348.5
+    "width": 511.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -77,7 +73,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,9 +88,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "README.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -105,17 +98,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "be866f89eb4d7971",
+  "active": "2df25486d021dd1f",
   "lastOpenFiles": [
+    "media/mysql/Pasted image 20220803145907.png",
     "tech/window-terminal.md",
-    "tech/nacos.md",
-    "tech/web-design-in-4-minutes.md",
     "tech/vps.md",
+    "tech/ssh.md",
     "tech/tlcl.md",
-    "tech/centos7.md",
-    "tech/debian.md",
-    "tech/manjaro.md",
-    "tech/curl.md",
-    "tech/gradle.md"
+    "tech/this-in-javascript.md",
+    "tech/redis.md",
+    "tech/pandas.md",
+    "tech/nacos.md",
+    "tech/mysql.md"
   ]
 }

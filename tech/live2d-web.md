@@ -5,8 +5,7 @@ author: [jianchengwang]
 date: 2020-10-25
 excerpt: "萌萌哒的看板娘，以下资源来源于互联网，最底下会给出相关链接"
 draft: false
-tags: 
-- frontend
+tags: [frontend]
 ---
 
 萌萌哒的看板娘，以下资源来源于互联网，最底下会给出相关链接，[github示例](https://github.com/jianchengwang/live2d_models)

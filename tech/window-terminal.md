@@ -3,10 +3,9 @@ title: window-terminal
 slug: window-terminal
 author: [jianchengwang]
 date: 2021-06-28
-excerpt: "**window terminal** 是win10提供的终端软件，可以在microsoft store下载"
+excerpt: "window terminal是win10提供的终端软件，可以在microsoft store下载"
 draft: false
-tags: 
-- tool
+tags: [tool]
 ---
 
 **window terminal** 是win10提供的终端软件，可以在microsoft store下载
