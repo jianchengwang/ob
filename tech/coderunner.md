@@ -1,11 +1,12 @@
 ---
 title: coderunner
-createdAt: 2021-05-25
-categories: 
-- go
-tags: 
-- coderunner
+slug: coderunner
+author: [jianchengwang]
+date: 2021-05-25
+excerpt: "这几天学习go语言，发现[The Go Playground](https://play.golang.org/) 可以在线编辑代码然后运行，其实很多语言都有提供这种在线代码编辑运行功能，比如[Scalafiddle](https://scalafiddle.io/)等等，这种免去了下载语言配置环境等，可以让用户尽情体验编码的乐趣。"
 draft: false
+tags: 
+- code
 ---
 
 这几天学习go语言，发现[The Go Playground](https://play.golang.org/) 可以在线编辑代码然后运行，其实很多语言都有提供这种在线代码编辑运行功能，比如[Scalafiddle](https://scalafiddle.io/)等等，这种免去了下载语言配置环境等，可以让用户尽情体验编码的乐趣。

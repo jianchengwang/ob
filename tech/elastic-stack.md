@@ -1,16 +1,15 @@
 ---
 title: elastic-stack
-createdAt: 2021-02-26
-categories: 
-- middleware
+slug: elastic-stack
+author: [jianchengwang]
+date: 2021-02-26
+excerpt: "ELK = ElasticSearch + Logstash + Kibana，随着Beats的加入，原来的ELK体系变成了ElasticStack，即ElasticStack = ElasticSearch + Logstash + Kibana + Beats"
+draft: false
 tags: 
-- elastic stack
-
+- middleware
 ---
 
-ELK = ElasticSearch + Logstash + Kibana，随着Beats的加入，原来的ELK体系变成了ElasticStack，即
-
-ElasticStack = ElasticSearch + Logstash + Kibana + Beats，感兴趣的可以建议直接看官方文档，[请戳](https://www.elastic.co/guide/index.html)
+ELK = ElasticSearch + Logstash + Kibana，随着Beats的加入，原来的ELK体系变成了ElasticStack，即ElasticStack = ElasticSearch + Logstash + Kibana + Beats，感兴趣的可以建议直接看官方文档，[请戳](https://www.elastic.co/guide/index.html)
 
 <!--more-->
 

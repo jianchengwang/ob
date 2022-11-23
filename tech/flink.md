@@ -1,10 +1,12 @@
 ---
 title: flink
-createdAt: 2020-11-12
-categories: 
-- middleware
+slug: flink
+author: [jianchengwang]
+date: 2021-02-26
+excerpt: "**Apache Flink** 是一个在无界和有界数据流上进行状态计算的框架和分布式处理引擎.Flink 已经可以在所有常见的集群环境中运行,并以 in-memory 的速度和任意的规模进行计算."
+draft: false
 tags: 
-- flink
+- middleware
 ---
 
 **Apache Flink** 是一个在无界和有界数据流上进行状态计算的框架和分布式处理引擎.Flink 已经可以在所有常见的集群环境中运行,并以 in-memory 的速度和任意的规模进行计算.
@@ -12,8 +14,6 @@ tags:
 可以类比 **spring batch** 或者**spark**进行学习,基本流程就是**source->computer/transformation->sink**
 
 本文章的大部分文字都来源于互联网,最底下会附上链接.
-
-<!--more-->
 
 ### QuickStart
 

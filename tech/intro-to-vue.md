@@ -1,18 +1,17 @@
 ---
 title: intro-to-vue
-createdAt: 2020-09-13
-categories: 
-- web
-- vue
+slug: intro-to-vue
+author: [jianchengwang]
+date: 2020-09-13
+excerpt: "最近喵了下 `introducction to vue.js` 视频感觉还不错，如果感兴趣，[请戳](https://frontendmasters.com/courses/vue/)。下面主要根据视频作者`Sarah Drasner` 的`ppt` 简单做下笔记，当然如果要系统过一遍的话还是推荐看官方文档。"
+draft: false
 tags: 
-- vue
+- frontend
 ---
 
 最近喵了下 `introducction to vue.js` 视频感觉还不错，如果感兴趣，[请戳](https://frontendmasters.com/courses/vue/)。下面主要根据视频作者`Sarah Drasner` 的`ppt` 简单做下笔记，当然如果要系统过一遍的话还是推荐看官方文档。
 
-<!--more-->
-
-##  Directives & Data Rendering
+## Directives & Data Rendering
 
 很多指令官方文档都有很详细的介绍，这里不多赘述。
 

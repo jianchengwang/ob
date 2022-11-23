@@ -1,10 +1,12 @@
 ---
 title: mysql
-createdAt: 2022-08-03
-categories: 
-- database
+slug: mysql
+author: [jianchengwang]
+date: 2022-08-03
+excerpt: "最近公众号看到歪歪大佬的安利，入坑买了个极客时间-丁奇老师的-mysql实战45讲，这里简单做个课程笔记"
+draft: false
 tags: 
-- mysql
+- middleware
 ---
 
 [极客时间-mysql实战45讲](https://time.geekbang.org/column/intro/100020801?tab=catalog) 

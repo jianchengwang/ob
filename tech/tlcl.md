@@ -1,11 +1,12 @@
 ---
 title: tlcl
-createdAt: 2020-07-18
-categories: 
-- linux
-- sh
+slug: tlcl
+author: [jianchengwang]
+date: 2020-07-18
+excerpt: "最近学习**Linux Command** ，瞄了下下 **TLCL** 文档，这里做个记录，感兴趣的可以去看下"
+draft: false
 tags: 
-- shell
+- linux
 ---
 
 最近学习**Linux Command** ，瞄了下下 **TLCL** 文档，这里做个记录，感兴趣的可以去看下
@@ -13,8 +14,6 @@ tags:
 [原版地址](http://linuxcommand.org/tlcl.php)
 
 [翻译版](http://billie66.github.io/TLCL/book/)
-
-<!--more-->
 
 ### I/O redirection
 

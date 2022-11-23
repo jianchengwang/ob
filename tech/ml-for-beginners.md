@@ -1,8 +1,10 @@
 ---
 title: ml-for-beginners
-createdAt: 2021-09-10
-categories: 
-- ml
+slug: ml-for-beginners
+author: [jianchengwang]
+date: 2021-09-10
+excerpt: "微软出品的机器学习教程，这里做个学习记录。"
+draft: false
 tags: 
 - ml
 ---
@@ -10,8 +12,6 @@ tags:
 [ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners) 
 
 微软出品的机器学习教程，这里做个学习记录。
-
-<!--more-->
 
 ## Introduction to regression
 

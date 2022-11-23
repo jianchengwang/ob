@@ -1,10 +1,12 @@
 ---
 title: window-terminal
-createdAt: 2021-06-28
-categories: 
-- win10
-tags:
-- window terminal
+slug: window-terminal
+author: [jianchengwang]
+date: 2021-06-28
+excerpt: "**window terminal** 是win10提供的终端软件，可以在microsoft store下载"
+draft: false
+tags: 
+- tool
 ---
 
 **window terminal** 是win10提供的终端软件，可以在microsoft store下载

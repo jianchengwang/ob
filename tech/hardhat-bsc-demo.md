@@ -1,21 +1,17 @@
 ---
 title: hardhat-bsc-demo
-createdAt: 2021-09-29
-categories: 
-- blockchain
-- bsc
+slug: hardhat-bsc-demo
+author: [jianchengwang]
+date: 2021-09-29
+excerpt: "币安智能链是一种创新的解决方案，为币安链带来可编程性和互操作性。币安智能链依赖于一个由21个验证者组成的系统，该系统具有权益证明(PoSA)共识，可以支持更短的区块时间和更低的费用。最具粘合性的验证器候选区块将成为验证器和生产区块。"
+draft: false
 tags: 
 - blockchain
-- bsc
-
-
 ---
 
- 币安智能链是一种创新的解决方案，为币安链带来可编程性和互操作性。币安智能链依赖于一个由21个验证者组成的系统，该系统具有权益证明(PoSA)共识，可以支持更短的区块时间和更低的费用。最具粘合性的验证器候选区块将成为验证器和生产区块。双符号检测和其他斩控逻辑保证了安全性、稳定性和链的终结性。以上来自复制于官网，感兴趣的可以自行查阅，[binance-smart-chain](https://docs.binance.org/smart-chain/guides/bsc-intro.html)
+币安智能链是一种创新的解决方案，为币安链带来可编程性和互操作性。币安智能链依赖于一个由21个验证者组成的系统，该系统具有权益证明(PoSA)共识，可以支持更短的区块时间和更低的费用。最具粘合性的验证器候选区块将成为验证器和生产区块。双符号检测和其他斩控逻辑保证了安全性、稳定性和链的终结性。以上来自复制于官网，感兴趣的可以自行查阅，[binance-smart-chain](https://docs.binance.org/smart-chain/guides/bsc-intro.html)
 
 本文只简单介绍一下，通过`hardhat`创建一个智能合约代币，然后部署到币安智能链的流程。
-
-<!--more-->
 
 ## MetaMask
 

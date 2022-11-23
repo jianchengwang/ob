@@ -1,16 +1,15 @@
 ---
 title: this-in-javascript
-createdAt: 2019-12-09
-categories: 
-- web
-- js
+slug:this-in-javascript
+author: [jianchengwang]
+date: 2020-10-25
+excerpt: "今天本来打算喵下 `ES6` ，然后发现 `js` 胖箭头函数 `=>`  的 `this` 跟预期的不大一样，所以就翻阅下资料，这里做个记录，本文大部分内容都摘自互联网，哥哥只是个搬运工，底下会列出相关链接，感兴趣地可以去看下。"
+draft: false
 tags: 
-- js
+- frontend
 ---
 
 今天本来打算喵下 `ES6` ，然后发现 `js` 胖箭头函数 `=>`  的 `this` 跟预期的不大一样，所以就翻阅下资料，这里做个记录，本文大部分内容都摘自互联网，哥哥只是个搬运工，底下会列出相关链接，感兴趣地可以去看下。
-
-<!--more-->
 
 ## 绑定规则
 

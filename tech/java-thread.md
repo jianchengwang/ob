@@ -1,21 +1,19 @@
 ---
 title: java-thread
-createdAt: 2020-01-03
-categories: 
-- java
-- javase
+slug: java-thread
+author: [jianchengwang]
+date: 2020-01-03
+excerpt: "Java语言内置了多线程支持：一个Java程序实际上是一个JVM进程，JVM进程用一个主线程来执行`main()`方法，在`main()`方法内部，我们又可以启动多个线程。此外，JVM还有负责垃圾回收的其他工作线程等。"
+draft: false
 tags: 
-- thread
-
+- java
 ---
 
- Java语言内置了多线程支持：一个Java程序实际上是一个JVM进程，JVM进程用一个主线程来执行`main()`方法，在`main()`方法内部，我们又可以启动多个线程。此外，JVM还有负责垃圾回收的其他工作线程等。
+Java语言内置了多线程支持：一个Java程序实际上是一个JVM进程，JVM进程用一个主线程来执行`main()`方法，在`main()`方法内部，我们又可以启动多个线程。此外，JVM还有负责垃圾回收的其他工作线程等。
 
 因此，对于大多数Java程序来说，我们说多任务，实际上是说如何使用多线程实现多任务。
 
 本文大部分内容来自[廖雪峰的java基础](https://www.liaoxuefeng.com/wiki/1252599548343744)，感兴趣的可以自行查阅，最底下也列出相关链接。
-
-<!--more-->
 
 ## Create thread
 

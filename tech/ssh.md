@@ -1,18 +1,17 @@
 ---
 title: ssh
-createdAt: 2019-11-10
-categories: 
+slug: ssh
+author: [jianchengwang]
+date: 2019-11-10
+excerpt: "**SSH** 即 **Secure Shell**，是一个提供数据通信安全、远程登录、远程指令执行等功能的安全网络协议，由芬兰赫尔辛基大学研究员Tatu Ylönen，于1995年提出，其目的是用于替代非安全的Telnet、rsh、rexec等远程Shell协议。之后SSH发展了两个大版本SSH-1和SSH-2"
+draft: false
+tags: 
 - network
-- ssh
-tags:
-- ssh
 ---
 
 **SSH** 即 **Secure Shell**，是一个提供数据通信安全、远程登录、远程指令执行等功能的安全网络协议，由芬兰赫尔辛基大学研究员Tatu Ylönen，于1995年提出，其目的是用于替代非安全的Telnet、rsh、rexec等远程Shell协议。之后SSH发展了两个大版本SSH-1和SSH-2。
 
 作为一名程序员或是运维人员，一般都会遇到 **SSH** 登录，或是 **Git** 提交等事物，每次都手动输入密码显然不是一个明智的选择，虽然有很多工具可以帮我们保存密码，但是命令才是核心，所以这篇文章简单记录下，SSH 的相关原理命令和如何实现免密登录。
-
-<!--more-->
 
 ### 基本概念
 

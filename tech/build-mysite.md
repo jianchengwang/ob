@@ -1,13 +1,12 @@
 ---
-title: build-my-site
-createdAt: 2020-12-23
-categories: 
-- web
-- vue
+title: build-mysite
+slug: build-mysite
+author: [jianchengwang]
+date: 2020-12-23
+excerpt: "之前个人站点使用的`hexo`构建，因为主题都是依赖别人的，感觉不是很好改，而且现在构建一个静态网站，也不是太难，所以这边就花个两三天时间，利用`nuxt`构建一波，这边简单做个记录"
+draft: false
 tags: 
-- nuxt
-- my-site
-
+- frontend
 ---
 
 之前个人站点使用的`hexo`构建，因为主题都是依赖别人的，感觉不是很好改，而且现在构建一个静态网站，也不是太难，所以这边就花个两三天时间，利用`nuxt`构建一波，这边简单做个记录
@@ -15,8 +14,6 @@ tags:
 选择`nuxt`主要是基于vuejs，现在社区很活跃，提供了很多插件，比如`nuxt-content`可以方便渲染markdown文件，对于前端菜鸡的后端狗来说，上手容易，内置路由基本不需要配置，跟据目录结构生成动态路由，支持ssr等
 
 后端服务使用`go`，上手也比较容易，性能不错
-
-<!--more-->
 
 ## create nuxt-app
 

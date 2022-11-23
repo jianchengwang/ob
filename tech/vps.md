@@ -1,24 +1,17 @@
 ---
 title: vps
-createdAt: 2019-04-09
-categories: 
-- play
-- gfw
-tags: 
-- vps
-- gfw
+slug: vps
+author: [jianchengwang]
+date: 2019-04-09
+excerpt: "VPS厂商很多，如果使用vultr厂商注册新用户的话，请戳，[vultr推广连接](https://www.vultr.com/?ref=7567014)，如果使用阿里云的话，请戳， 阿里云大使"
 draft: true
+tags: 
+- network
 ---
 
-VPS厂商很多，
-
-如果使用**vultr**厂商注册新用户的话，请戳，[vultr推广连接](https://www.vultr.com/?ref=7567014)
-
-如果使用阿里云的话，请戳， [阿里云大使](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=um4bcafi)
+VPS厂商很多，如果使用vultr厂商注册新用户的话，请戳，[vultr推广连接](https://www.vultr.com/?ref=7567014)，如果使用阿里云的话，请戳， 阿里云大使
 
 以下是vultr的官方测速服务器，你可以进行下载测试，因为运营商或是位置的不同，不同位置速度都有差异，自行选择最适合自己的。
-
-<!--more-->
 
 | Location 地理位置                           | Hostname 官方测试服务器ip | Download Test File 下载测试文件                              |
 | ------------------------------------------- | ------------------------- | ------------------------------------------------------------ |

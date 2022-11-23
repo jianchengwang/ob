@@ -1,17 +1,15 @@
 ---
 title: java-common-mistakes
-createdAt: 2022-11-17
-categories: 
-- java
-- mistake
+slug: java-common-mistakes
+author: [jianchengwang]
+date: 2022-11-17
+excerpt: "最近在喵极客的[Java业务常见的错误100例](https://time.geekbang.org/column/article/213295)，好记性不如烂笔头，这边简单做个笔记。源码拷贝于讲师的源码，放置在[todo-java/geekbang/java-common-mistakes](https://github.com/jianchengwang/todo-java/tree/main/geekbang/java-common-mistakes)"
+draft: false
 tags: 
 - java
-- mistake
 ---
 
 最近在喵极客的[Java业务常见的错误100例](https://time.geekbang.org/column/article/213295)，好记性不如烂笔头，这边简单做个笔记。源码拷贝于讲师的源码，放置在[todo-java/geekbang/java-common-mistakes](https://github.com/jianchengwang/todo-java/tree/main/geekbang/java-common-mistakes)
-
-<!--more-->
 
 ## 并发工具不等于线程安全
 

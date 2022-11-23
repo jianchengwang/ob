@@ -1,21 +1,17 @@
 ---
 title: image-similarity-flask
-createdAt: 2021-10-28
-categories: 
-- ml
-tags: 
-- ml
-- cnn
-- opencv
-- lbp
+slug: image-similarity-flask
+author: [jianchengwang]
+date: 2021-10-28
+excerpt: "这几天公司要搞一个茶饼图像识别的功能，就是拍摄茶饼图片，跟已录入茶饼的图片记录对比，筛选出相似度最高的茶饼图片，有点类似谷歌的以图搜图。这边简单搞了个demo，记录下"
 draft: false
+tags: 
+- code
 ---
 
- 这几天公司要搞一个茶饼图像识别的功能，就是拍摄茶饼图片，跟已录入茶饼的图片记录对比，筛选出相似度最高的茶饼图片，有点类似谷歌的以图搜图。这边简单搞了个demo，记录下。
+这几天公司要搞一个茶饼图像识别的功能，就是拍摄茶饼图片，跟已录入茶饼的图片记录对比，筛选出相似度最高的茶饼图片，有点类似谷歌的以图搜图。这边简单搞了个demo，记录下。
 
 no bb, show me code，可以直接查看[源码示例](https://github.com/jianchengwang/todo-ml/tree/main/image-similarity-flask)
-
-<!--more-->
 
 ## 技术选型
 

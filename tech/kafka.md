@@ -1,18 +1,15 @@
 ---
 title: kafka
-createdAt: 2020-02-09
-categories: 
+slug: kafka
+author: [jianchengwang]
+date: 2020-02-09
+excerpt: "[Kafka](http://kafka.apache.org/)是一个分布式的基于发布/订阅模式的消息队列（Message Queue），主要应用于大数据实时处理领域。"
+draft: true
+tags: 
 - middleware
-tags:
-- kafka
-- message queue
-
-
 ---
 
 [Kafka](http://kafka.apache.org/)是一个分布式的基于发布/订阅模式的消息队列（Message Queue），主要应用于大数据实时处理领域。
-
-<!--more-->
 
 ## Kafka架构
 

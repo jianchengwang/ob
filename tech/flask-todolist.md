@@ -1,16 +1,15 @@
 ---
 title: flask-todolist
-createdAt: 2020-11-28
-categories: 
-- python
-- web
+slug: flask-todolist
+author: [jianchengwang]
+date: 2020-11-28
+excerpt: "`Flask` 是一个使用 Python 语言编写的 Web 框架，它可以让你高效的编写 Web 程序。我最近用`flask+vue`搭建一个简单的`todolist` 项目示例来学习，主要是参考[flask-tutorial](https://github.com/greyli/flask-tutorial)"
+draft: false
 tags: 
-- flask
+- python
 ---
 
 `Flask` 是一个使用 Python 语言编写的 Web 框架，它可以让你高效的编写 Web 程序。我最近用`flask+vue`搭建一个简单的`todolist` 项目示例来学习，主要是参考[flask-tutorial](https://github.com/greyli/flask-tutorial)，感兴趣的可以看看，[示例代码](https://github.com/jianchengwang/todo-python/raw/master/flask/todo-list)
-
-<!--more-->
 
 ## 前言
 

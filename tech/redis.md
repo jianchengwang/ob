@@ -1,19 +1,17 @@
 ---
 title: redis
-createdAt: 2020-03-10
-categories: 
+slug: redis
+author: [jianchengwang]
+date: 2020-03-10
+excerpt: "Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache, and message broker. Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes, and streams. Redis has built-in replication, Lua scripting, LRU eviction, transactions, and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster."
+draft: false
+tags: 
 - middleware
-tags:
-- nosql
-- redis
-
 ---
 
 Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache, and message broker. Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes, and streams. Redis has built-in replication, Lua scripting, LRU eviction, transactions, and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.
 
 官网的介绍，直接黏贴过来的，本文为个人学习笔记，方便后面查阅，建议感兴趣的直接看官网，[redis.io](https://redis.io/)
-
-<!--more-->
 
 ## Install
 

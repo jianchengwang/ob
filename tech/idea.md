@@ -1,17 +1,15 @@
 ---
 title: idea
-createdAt: 2021-02-08
-categories: 
-- java
-- ide
+slug: idea
+author: [jianchengwang]
+date: 2021-02-08
+excerpt: "**IntelliJ IDEA**，java的集成开发环境，这边记录下常用的快捷键，以及注册码等，更多信息可以查看官网"
+draft: false
 tags: 
-- idea
-
+- tool
 ---
 
 **IntelliJ IDEA**，java的集成开发环境，这边记录下常用的快捷键，以及注册码等，更多信息可以查看官网，[idea](https://www.jetbrains.com/idea/)
-
-<!--more-->
 
 ## 快捷键
 
@@ -136,6 +134,6 @@ Workdir: `$OutputPath$`
 
 ## 注册码
 
-参考大佬的博客 https://zhile.io/
+参考 [https://jetbra.in/s](https://jetbra.in/s)
 
 网上也一堆魔改的，这个建议有资金的可以购买正版，或者根据开源项目申请，门槛不会很高。

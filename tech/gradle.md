@@ -1,11 +1,12 @@
 ---
 title: gradle
-createdAt: 2020-06-09
-categories: 
-- java
-- tool
+slug: gradle
+author: [jianchengwang]
+date: 2020-06-09
+excerpt: "软件行业的蓬勃发展，新旧交替，版本构建工具从 **ant -> maven -> gradle** 进行演变，个人不喜欢 maven 的 xml 的配置文件，基于  **Groovy** 语言作为构建脚本语言，相对于 JAVA 开发人员来说比较容易上手，动态语言也比 xml 配置文件更灵活，构建速度也更加的快速，所以入了 gradle 的坑。"
+draft: false
 tags: 
-- gradle
+- tool
 ---
 
 软件行业的蓬勃发展，新旧交替，版本构建工具从 **ant -> maven -> gradle** 进行演变，个人不喜欢 maven 的 xml 的配置文件，基于  **Groovy** 语言作为构建脚本语言，相对于 JAVA 开发人员来说比较容易上手，动态语言也比 xml 配置文件更灵活，构建速度也更加的快速，所以入了 gradle 的坑。当然，目前，很多公司还是使用 maven 作为构建工具，所以建议maven 还是要懂点的。
@@ -13,8 +14,6 @@ tags:
 本文仅供自己学习 gradle 的记录笔记，如果你想深入的学习，请戳 [**官方文档**](https://docs.gradle.org/current/userguide/userguide.html)
 
 个人觉得，官方文档是最好的学习文档，我简单过了一遍，感觉官方文档的例子都很精炼，总结得很到位，底下很多代码实例也是来自官方文档。
-
-<!--more-->
 
 ## 基本概念
 

@@ -1,19 +1,17 @@
 ---
 title: intro-to-serverless-functions
-createdAt: 2020-11-13
-categories: 
-- web
-- serverless
+slug: intro-to-serverless-functions
+author: [jianchengwang]
+date: 2020-11-13
+excerpt: "最近喵了下 [Introduction to Serverless Functions](https://frontendmasters.com/courses/serverless-functions/) 视频感觉还不错。下面主要根据视频作者`Jason Lengstorf` 的`ppt` 简单做下笔记，最底下会列出相关链接"
+draft: false
 tags: 
-- serverless
-
+- devops
 ---
 
 最近喵了下 [Introduction to Serverless Functions](https://frontendmasters.com/courses/serverless-functions/) 视频感觉还不错。下面主要根据视频作者`Jason Lengstorf` 的`ppt` 简单做下笔记，最底下会列出相关链接。
 
 [示例代码](https://github.com/jianchengwang/todo-web/raw/master/serverless/frontendmasters-serverless) [示例网站](https://demo-frontentedmaster-serverless-functions.netlify.app/)
-
-<!--more-->
 
 ## 前言
 
