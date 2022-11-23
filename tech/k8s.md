@@ -120,7 +120,7 @@ kubectl proxy --port=8888 --address='192.168.3.140' --accept-hosts='^.*' &
 
 ### 总结
 
-![./images/k8s/cluster-2.png](images/k8s/cluster-2.png)
+![](./images/k8s/cluster-2.png)
 
 ## Yaml
 
