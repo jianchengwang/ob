@@ -16,7 +16,7 @@ tags: [middleware]
 
 `mysql> select * from T where ID=10；`
 
-![](images/mysql/cluster.png)
+![](./images/mysql/cluster.png)
 
 大体来说，MySQL 可以分为 Server 层和存储引擎层两部分。
 
@@ -47,7 +47,7 @@ msyql里经常说的`WAL(Write-Ahead Logging)` ，它的关键点是先写日志
 
 server层也有自己的日志模块，binlog，则是逻辑日志，追加写，会有多个文件，
 
-![](images/mysql/redolog.png)
+![](./images/mysql/redolog.png)
 
 redo log 用于保证 crash-safe 能力。`innodb_flush_log_at_trx_commit` 这个参数设置成 1 的时候，表示每次事务的 redo log 都直接持久化到磁盘。这个参数我建议你设置成 1，这样可以保证 MySQL 异常重启之后数据不丢失。
 
@@ -81,7 +81,7 @@ select * from information_schema.innodb_trx where TIME_TO_SEC(timediff(now(),trx
 
 在 InnoDB 中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。又因为前面我们提到的，InnoDB 使用了 B+ 树索引模型，所以数据都是存储在 B+ 树中的。
 
-![](images/mysql/page.png)
+![](./images/mysql/page.png)
 
 索引类型分为`主键索引`和`非主键索引`。主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。
 
@@ -260,7 +260,9 @@ Extra 字段显示 Using temporary，表示的是需要使用临时表；Using f
 binlog的三种格式
 1. statement 记录sql语句原文，如果是delete limit的操作，可能导致主备数据不一致，
 2. row 格式的 binlog 里没有了 SQL 语句的原文，而是替换成了两个 event：Table_map 和 Delete_rows。Table_map event，用于说明接下来要操作的表是 test 库的表 t;Delete_rows event，用于定义删除的行为。使用mysqlbinlog查看详细内容， mysqlbinlog -vv data/master.000001 --start-position=8900;
-![](images/mysql/deadlock.png)
+
+![](./images/mysql/deadlock.png)
+
 从这个图中，我们可以看到以下几个信息：server id 1，表示这个事务是在 server_id=1 的这个库上执行的。每个 event 都有 CRC32 的值，这是因为我把参数 binlog_checksum 设置成了 CRC32。Table_map event 跟在图 5 中看到的相同，显示了接下来要打开的表，map 到数字 226。现在我们这条 SQL 语句只操作了一张表，如果要操作多张表呢？每个表都有一个对应的 Table_map event、都会 map 到一个单独的数字，用于区分对不同表的操作。我们在 mysqlbinlog 的命令中，使用了 -vv 参数是为了把内容都解析出来，所以从结果里面可以看到各个字段的值（比如，@1=4、 @2=4 这些值）。binlog_row_image 的默认配置是 FULL，因此 Delete_event 里面，包含了删掉的行的所有字段的值。如果把 binlog_row_image 设置为 MINIMAL，则只会记录必要的信息，在这个例子里，就是只会记录 id=4 这个信息。最后的 Xid event，用于表示事务被正确地提交了。你可以看到，当 binlog_format 使用 row 格式的时候，binlog 里面记录了真实删除行的主键 id，这样 binlog 传到备库去的时候，就肯定会删除 id=4 的行，不会有主备删除不同行的问题。
 3. mixed，row太占空间，比如你用一个 delete 语句删掉 10 万行数据，用 statement 的话就是一个 SQL 语句被记录到 binlog 中，占用几十个字节的空间。但如果用 row 格式的 binlog，就要把这 10 万条记录都写到 binlog 中。这样做，不仅会占用更大的空间，同时写 binlog 也要耗费 IO 资源，影响执行速度。。MySQL 就取了个折中方案，也就是有了 mixed 格式的 binlog。mixed 格式的意思是，MySQL 自己会判断这条 SQL 语句是否可能引起主备不一致，如果有可能，就用 row 格式，否则就用 statement 格式。
 
@@ -272,7 +274,7 @@ mysqlbinlog master.000001  --start-position=2738 --stop-position=2973 | mysql -h
 
 执行 `show engine innodb status` 命令得到的部分输出。这个命令会输出很多信息，有一节 LATESTDETECTED DEADLOCK，就是记录的最后一次死锁信息。
 
-![](images/mysql/deadlock-1.png)
+![](./images/mysql/deadlock-1.png)
 
 1. 这个结果分成三部分：(1) TRANSACTION，是第一个事务的信息；(2) TRANSACTION，是第二个事务的信息；WE ROLL BACK TRANSACTION (1)，是最终的处理结果，表示回滚了第一个事务。
 2. 第一个事务的信息中：WAITING FOR THIS LOCK TO BE GRANTED，表示的是这个事务在等待的锁信息；index c of table `test`.`t`，说明在等的是表 t 的索引 c 上面的锁；lock mode S waiting 表示这个语句要自己加一个读锁，当前的状态是等待中；Record lock 说明这是一个记录锁；n_fields 2 表示这个记录是两列，也就是字段 c 和主键字段 id；0: len 4; hex 0000000a; asc ;; 是第一个字段，也就是 c。值是十六进制 a，也就是 10；1: len 4; hex 0000000a; asc ;; 是第二个字段，也就是主键 id，值也是 10；这两行里面的 asc 表示的是，接下来要打印出值里面的“可打印字符”，但 10 不是可打印字符，因此就显示空格。第一个事务信息就只显示出了等锁的状态，在等待 (c=10,id=10) 这一行的锁。当然你是知道的，既然出现死锁了，就表示这个事务也占有别的锁，但是没有显示出来。别着急，我们从第二个事务的信息中推导出来。
@@ -294,7 +296,7 @@ lock_mode X waiting表示next-key lock； lock_mode X locks rec but not gap是�
 
 服务端并不需要保存一个完整的结果集。取数据和发数据的流程是这样的：
 
-![](images/mysql/buffer.png)
+![](./images/mysql/buffer.png)
 
 1. 获取一行，写到 net_buffer 中。这块内存的大小是由参数 net_buffer_length 定义的，默认是 16k。
 2. 重复获取行，直到 net_buffer 写满，调用网络接口发出去。

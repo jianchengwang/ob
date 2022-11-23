@@ -279,7 +279,7 @@ InnoDB 采用页而不是行的粒度来保存数据，即数据被分成若干�
 
 各个数据页组成一个双向链表，每个数据页中的记录按照主键顺序组成单向链表；每一个数据页中有一个页目录，方便按照主键查询记录。数据页的结构如下：
 
-![](images/java-common-mistakes/innodb-page.png)
+![](./images/java-common-mistakes/innodb-page.png)
 
 页目录通过槽把记录分成不同的小组，每个小组有若干条记录。如图所示，记录中最前面的小方块中的数字，代表的是当前分组的记录条数，最小和最大的槽指向 2 个特殊的伪记录。有了槽之后，我们按照主键搜索页中记录时，就可以采用二分法快速搜索，无需从最小记录开始遍历整个页中的记录链表。
 
@@ -289,7 +289,7 @@ InnoDB 采用页而不是行的粒度来保存数据，即数据被分成若干�
 
 InnoDB 引入了 B+ 树，如下所示
 
-![](images/java-common-mistakes/innodb-btree.png)
+![](./images/java-common-mistakes/innodb-btree.png)
 
 B+ 树的特点包括：
 1. 最底层的节点叫作叶子节点，用来存放数据；
@@ -831,7 +831,7 @@ UnsupportedOperationException：操作不支持异常，适用于某个操作在
 
 ## 日志处理
 
-![](images/java-common-mistakes/log.png)
+![](./images/java-common-mistakes/log.png)
 
 SLF4J 实现了三种功能：
 
@@ -847,7 +847,7 @@ Logback 就是按照 SLF4J API 标准实现的，因此不需要绑定模块做�
 
 Spring Boot 是目前最流行的 Java 框架，它的日志框架也用的是 Logback。那，为什么我们没有手动引入 Logback 的包，就可以直接使用 Logback 了呢？查看 Spring Boot 的 Maven 依赖树，可以发现 spring-boot-starter 模块依赖了 spring-boot-starter-logging 模块，而 spring-boot-starter-logging 模块又帮我们自动引入了 logback-classic（包含了 SLF4J 和 Logback 日志框架）和 SLF4J 的一些适配器。其中，log4j-to-slf4j 用于实现 Log4j2 API 到 SLF4J 的桥接，jul-to-slf4j 则是实现 java.util.logging API 到 SLF4J 的桥接：
 
-![](images/java-common-mistakes/spring-log.png)
+![](./images/java-common-mistakes/spring-log.png)
 
 自行查阅[boot-features-logback-extensions](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-logback-extensions)
 
@@ -913,7 +913,7 @@ private static void fileChannelOperation() throws IOException {
 
 ## 使用Java8的日期时间类
 
-![](images/java-common-mistakes/java8-date.png)
+![](./images/java-common-mistakes/java8-date.png)
 
 ## OOM
 
@@ -1096,7 +1096,7 @@ AOP，体现了松耦合、高内聚的精髓，在切面集中实现横切关�
 
 为方便理解，我们把 Spring AOP 技术看作为蛋糕做奶油夹层的工序。如果我们希望找到一个合适的地方把奶油注入蛋糕胚子中，那应该如何指导工人完成操作呢？
 
-![](images/java-common-mistakes/spring-aop.png)
+![](./images/java-common-mistakes/spring-aop.png)
 
 1. 首先，我们要提醒他，只能往蛋糕胚子里面加奶油，而不能上面或下面加奶油。这就是连接点（Join point），对于 Spring AOP 来说，连接点就是方法执行。
 2. 然后，我们要告诉他，在什么点切开蛋糕加奶油。比如，可以在蛋糕坯子中间加入一层奶油，在中间切一次；也可以在中间加两层奶油，在 1/3 和 2/3 的地方切两次。这就是切点（Pointcut），Spring AOP 中默认使用 AspectJ 查询表达式，通过在连接点运行查询表达式来匹配切入点。
@@ -1221,7 +1221,7 @@ spring.aop.proxy-target-class=false
 1. 针对 Property，又抽象出各种 PropertySource 类代表配置源。一个环境下可能有多个配置源，每个配置源中有诸多配置项。在查询配置信息时，需要按照配置源优先级进行查询。
 2. Profile 定义了场景的概念。通常，我们会定义类似 dev、test、stage 和 prod 等环境作为不同的 Profile，用于按照场景对 Bean 进行逻辑归属。同时，Profile 和配置文件也有关系，每个环境都有独立的配置文件，但我们只会激活某一个环境来生效特定环境的配置文件。
 
-![](images/java-common-mistakes/springboot-env.png)
+![](./images/java-common-mistakes/springboot-env.png)
 
 接下来，我们重点看看 Property 的查询过程。对于非 Web 应用，Spring 对于 Environment 接口的实现是 StandardEnvironment 类。我们通过 Spring 注入 StandardEnvironment 后循环 getPropertySources 获得的 PropertySource，来查询所有的 PropertySource 中 key 是 user.name 或 management.server.port 的属性值；然后遍历 getPropertySources 方法，获得所有配置源并打印出来：
 
@@ -1244,7 +1244,7 @@ public void init(){
 }
 ```
 
-![](images/java-common-mistakes/springboot-env-load.png)
+![](./images/java-common-mistakes/springboot-env-load.png)
 
 ## 代码复用
 
@@ -1291,7 +1291,7 @@ return orderDO;
 
 ### JDK自带工具
 
-![](images/java-common-mistakes/jvm-command.png)
+![](./images/java-common-mistakes/jvm-command.png)
 
 ### Jvm工具
 
