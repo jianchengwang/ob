@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c71f143d7c0a36cd",
+        "id": "00a7d1fee689e906",
         "type": "tabs",
         "children": [
           {
-            "id": "a9e6b516ce193b83",
+            "id": "9585030add9a5d6f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "store/长安乱.md",
+                "file": "tech/mysql.md",
                 "mode": "source",
                 "source": false
               }
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 561.5
+    "width": 574.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "store/长安乱.md",
+                "file": "tech/mysql.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "store/长安乱.md"
+                "file": "tech/mysql.md"
               }
             }
           }
@@ -105,17 +105,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "a9e6b516ce193b83",
+  "active": "9585030add9a5d6f",
   "lastOpenFiles": [
-    "store/温柔刀.md",
-    "store/明月泪.md",
-    "store/断刀残雪.md",
-    "store/大荒.md",
-    "README.md",
-    "tech/build-mysite.md",
-    "mysite/about.md",
+    "tech/k8s.md",
     "tech/java-common-mistakes.md",
-    "media/k8s/Pasted image 20220809144441.png",
-    "tech/media/java-common-mistakes/Pasted image 20221118171943 1.png"
+    "tech/images/mysql/buffer.png",
+    "tech/images/mysql/deadlock-1.png",
+    "tech/images/mysql/deadlock.png",
+    "tech/images/mysql/page.png",
+    "tech/images/mysql/redolog.png",
+    "tech/images/mysql/cluster.png",
+    "tech/images/k8s/cluster-6.png",
+    "tech/images/k8s/deployment-yaml-1.png"
   ]
 }
