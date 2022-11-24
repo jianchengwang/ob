@@ -1,6 +1,6 @@
 ---
 title: The Power Of Habit
-slug: The Power Of Habit
+slug: ThePowerOfHabit
 author: [Charles Duhigg]
 date: 2021-03-21
 excerpt: "At its core, The Power of Habit contains an exhilarating argument: The key to exercising regularly, losing weight, raising exceptional children, becoming more productive,"
