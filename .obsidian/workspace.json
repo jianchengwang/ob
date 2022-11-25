@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "book/诛仙.md",
+                "file": "book/The Power Of Habit.md",
                 "mode": "source",
                 "source": false
               }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "book/诛仙.md",
+                "file": "book/The Power Of Habit.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "book/诛仙.md"
+                "file": "book/The Power Of Habit.md"
               }
             }
           }
@@ -107,8 +107,8 @@
   },
   "active": "7964f679c9ae2946",
   "lastOpenFiles": [
-    "book/The Power Of Habit.md",
     "book/诛仙.md",
+    "book/The Power Of Habit.md",
     "book/娱乐至死.md",
     "book/一句顶一万句.md",
     "book/一九八四.md",
