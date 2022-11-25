@@ -1,12 +1,12 @@
 ---
 title: The Power Of Habit
-slug: ThePowerOfHabit
+slug: The Power Of Habit
 author: [Charles Duhigg]
 date: 2021-03-21
 excerpt: "At its core, The Power of Habit contains an exhilarating argument: The key to exercising regularly, losing weight, raising exceptional children, becoming more productive,"
 draft: false
 tags: [内驱]
-resource: http://books.jianchengwang.info/study/The Power Of Habit.epub
+resource: https://books.jianchengwang.info/study/The Power Of Habit.epub
 douban: 10431236
 ---
 

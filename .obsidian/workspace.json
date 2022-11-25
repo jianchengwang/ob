@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "12e41a3fe352ab88",
+        "id": "1e4a9a4c94ef5f18",
         "type": "tabs",
         "children": [
           {
-            "id": "31d1b2eab2eea08c",
+            "id": "7964f679c9ae2946",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "book/诛仙.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -57,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 574.5
+    "width": 511.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -73,6 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "book/诛仙.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +93,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "book/诛仙.md"
+              }
             }
           }
         ],
@@ -98,17 +105,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "31d1b2eab2eea08c",
+  "active": "7964f679c9ae2946",
   "lastOpenFiles": [
-    "book/明朝那些事.md",
-    "book/一九八四.md",
-    "book/摆渡人.md",
-    "book/白夜行.md",
-    "book/此间的少年.md",
-    "book/刺杀骑士团长.md",
-    "book/娱乐至死.md",
+    "book/The Power Of Habit.md",
     "book/诛仙.md",
-    "book/The Power of Habit.md",
-    "tech/pandas.md"
+    "book/娱乐至死.md",
+    "book/一句顶一万句.md",
+    "book/一九八四.md",
+    "book/羊毛战记.md",
+    "book/我亲爱的甜橙树.md",
+    "book/我们仨.md",
+    "book/网络是怎样连接的.md",
+    "book/外婆的道歉信.md"
   ]
 }
