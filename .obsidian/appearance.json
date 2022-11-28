@@ -2,5 +2,6 @@
   "baseFontSize": 19,
   "cssTheme": "Typewriter",
   "accentColor": "",
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "textFontFamily": ""
 }
