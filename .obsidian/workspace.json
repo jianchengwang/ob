@@ -11,11 +11,26 @@
             "id": "2b083e7b28ca7f9f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "tech/dsa.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "73baf7bdf8860f6c",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "tech/ecd/dsa/geek-1.md"
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -57,7 +72,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5
+    "width": 314.5,
+    "collapsed": true
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -73,6 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "tech/ecd/dsa/geek-1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +105,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "tech/ecd/dsa/geek-1.md"
+              }
             }
           }
         ],
@@ -99,17 +118,17 @@
     "width": 200,
     "collapsed": true
   },
-  "active": "2b083e7b28ca7f9f",
+  "active": "73baf7bdf8860f6c",
   "lastOpenFiles": [
+    "tech/ecd/dsa/greedy-dp.md",
     "tech/dsa.md",
+    "tech/ecd/dsa/graph.md",
     "tech/ecd/dsa/sorting.md",
     "tech/ecd/dsa/heap.md",
     "tech/ecd/dsa/hashtable.md",
     "tech/ecd/dsa/Untitled.md",
     "tech/ecd/dsa/tree.png",
     "tech/ecd/dsa/tree.md",
-    "tech/ecd/dsa/stack-queue.md",
-    "tech/ecd/dsa/memory-model.md",
-    "tech/ecd/dsa/list.md"
+    "tech/ecd/dsa/stack-queue.md"
   ]
 }

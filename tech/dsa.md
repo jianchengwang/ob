@@ -8,7 +8,10 @@ draft: true
 tags: [algo]
 ---
 
-## Data structures
+最近在喵jomaclass的data-structures的课程，这里简单做个记录。推荐一个网站，[algorithm-visualizer](https://algorithm-visualizer.org/)，在线可视化进行数据结构跟算法分析，比较直观。
+
+
+## Course Theory
 
 ### Instruction
 
@@ -45,6 +48,19 @@ know more https://en.wikipedia.org/wiki/Big_O_notation
 ![heap](./ecd/dsa/heap.png)
 
 ### Sorting Algorithms
+
+![sorting](./ecd/dsa/sorting.png)
+
+### Graph
+
+![graph](./ecd/dsa/graph.png)
+
+### Greedy and Dynimic Programming
+
+![greedy-dp](./ecd/dsa/greedy-dp.png)
+
+
+
 
 
 
