@@ -4,33 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "f5d2cb541d14a252",
+        "id": "871750bfbe15f9c8",
         "type": "tabs",
         "children": [
           {
-            "id": "2b083e7b28ca7f9f",
+            "id": "2d3c2f222a1e43c2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "tech/dsa.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "73baf7bdf8860f6c",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "tech/ecd/dsa/geek-1.md"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -72,8 +57,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5,
-    "collapsed": true
+    "width": 314.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -89,7 +73,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/ecd/dsa/geek-1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,9 +88,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "tech/ecd/dsa/geek-1.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -115,20 +96,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
-  "active": "73baf7bdf8860f6c",
+  "active": "2d3c2f222a1e43c2",
   "lastOpenFiles": [
-    "tech/ecd/dsa/greedy-dp.md",
-    "tech/dsa.md",
+    "tech/java-common-mistakes.md",
+    "tech/ecd/geek-redis/hashtable.md",
+    "tech/geek-redis.md",
+    "tech/ecd/geek-redis/datastruct.md",
     "tech/ecd/dsa/graph.md",
-    "tech/ecd/dsa/sorting.md",
-    "tech/ecd/dsa/heap.md",
-    "tech/ecd/dsa/hashtable.md",
-    "tech/ecd/dsa/Untitled.md",
-    "tech/ecd/dsa/tree.png",
-    "tech/ecd/dsa/tree.md",
-    "tech/ecd/dsa/stack-queue.md"
+    "tech/ecd/dsa/graph.png",
+    "tech/ecd/dsa/geek-1.md",
+    "tech/redis.md",
+    "tech/pandas.md",
+    "tech/build-mysite.md"
   ]
 }
