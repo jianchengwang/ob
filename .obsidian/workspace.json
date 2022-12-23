@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "871750bfbe15f9c8",
+        "id": "92b5908631b1828b",
         "type": "tabs",
         "children": [
           {
-            "id": "2d3c2f222a1e43c2",
+            "id": "c70c525a26635ae1",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -98,8 +98,9 @@
     "direction": "horizontal",
     "width": 200
   },
-  "active": "2d3c2f222a1e43c2",
+  "active": "977f6da61281cf1c",
   "lastOpenFiles": [
+    "tech/debian.md",
     "tech/java-common-mistakes.md",
     "tech/ecd/geek-redis/hashtable.md",
     "tech/geek-redis.md",
@@ -108,7 +109,6 @@
     "tech/ecd/dsa/graph.png",
     "tech/ecd/dsa/geek-1.md",
     "tech/redis.md",
-    "tech/pandas.md",
-    "tech/build-mysite.md"
+    "tech/pandas.md"
   ]
 }
