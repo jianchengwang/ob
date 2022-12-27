@@ -72,15 +72,15 @@ wsl --terminate Debian
 mv /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo vim /etc/apt/sources.list
 
-deb http://mirrors.cloud.tencent.com/debian/ buster main non-free contrib
-deb http://mirrors.cloud.tencent.com/debian-security buster/updates main
-deb http://mirrors.cloud.tencent.com/debian/ buster-updates main non-free contrib
-deb http://mirrors.cloud.tencent.com/debian/ buster-backports main non-free contrib
+deb http://mirrors.cloud.tencent.com/debian/ bullseye main non-free contrib
+deb http://mirrors.cloud.tencent.com/debian-security bullseye-security/updates main
+deb http://mirrors.cloud.tencent.com/debian/ bullseye-updates main non-free contrib
+deb http://mirrors.cloud.tencent.com/debian/ bullseye-backports main non-free contrib
 
-deb-src http://mirrors.cloud.tencent.com/debian-security buster/updates main
-deb-src http://mirrors.cloud.tencent.com/debian/ buster main non-free contrib
-deb-src http://mirrors.cloud.tencent.com/debian/ buster-updates main non-free contrib
-deb-src http://mirrors.cloud.tencent.com/debian/ buster-backports main non-free contrib
+deb-src http://mirrors.cloud.tencent.com/debian-security bullseye-security/updates main
+deb-src http://mirrors.cloud.tencent.com/debian/ bullseye main non-free contrib
+deb-src http://mirrors.cloud.tencent.com/debian/ bullseye-updates main non-free contrib
+deb-src http://mirrors.cloud.tencent.com/debian/ bullseye-backports main non-free contrib
 
 sudo apt-get update
 ```

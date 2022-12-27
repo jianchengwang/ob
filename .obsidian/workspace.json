@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "92b5908631b1828b",
+        "id": "63b9b0415898e672",
         "type": "tabs",
         "children": [
           {
-            "id": "c70c525a26635ae1",
+            "id": "016f62c66d5fa5a6",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -98,9 +98,21 @@
     "direction": "horizontal",
     "width": 200
   },
-  "active": "977f6da61281cf1c",
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-excalidraw-plugin:New Excalidraw drawing": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "audio-recorder:Start/stop recording": false
+    }
+  },
+  "active": "016f62c66d5fa5a6",
   "lastOpenFiles": [
     "tech/debian.md",
+    "tech/centos7.md",
     "tech/java-common-mistakes.md",
     "tech/ecd/geek-redis/hashtable.md",
     "tech/geek-redis.md",
@@ -108,7 +120,6 @@
     "tech/ecd/dsa/graph.md",
     "tech/ecd/dsa/graph.png",
     "tech/ecd/dsa/geek-1.md",
-    "tech/redis.md",
-    "tech/pandas.md"
+    "tech/redis.md"
   ]
 }
