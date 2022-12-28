@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "63b9b0415898e672",
+        "id": "8039cebd7b6e95c6",
         "type": "tabs",
         "children": [
           {
-            "id": "016f62c66d5fa5a6",
+            "id": "65693928ad68ee4b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "tech/go-concurrency.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -73,6 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "tech/go-concurrency.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +93,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "tech/go-concurrency.md"
+              }
             }
           }
         ],
@@ -109,17 +116,17 @@
       "audio-recorder:Start/stop recording": false
     }
   },
-  "active": "016f62c66d5fa5a6",
+  "active": "65693928ad68ee4b",
   "lastOpenFiles": [
+    "tech/images/go-concurrency/chan-status.png",
+    "tech/go-concurrency.md",
+    "tech/elastic-stack.md",
+    "tech/git.md",
     "tech/debian.md",
     "tech/centos7.md",
     "tech/java-common-mistakes.md",
     "tech/ecd/geek-redis/hashtable.md",
     "tech/geek-redis.md",
-    "tech/ecd/geek-redis/datastruct.md",
-    "tech/ecd/dsa/graph.md",
-    "tech/ecd/dsa/graph.png",
-    "tech/ecd/dsa/geek-1.md",
-    "tech/redis.md"
+    "tech/ecd/geek-redis/datastruct.md"
   ]
 }
