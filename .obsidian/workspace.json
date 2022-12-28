@@ -118,15 +118,15 @@
   },
   "active": "65693928ad68ee4b",
   "lastOpenFiles": [
-    "tech/images/go-concurrency/chan-status.png",
+    "tech/mysql.md",
     "tech/go-concurrency.md",
+    "tech/images/go-concurrency/chan-status.png",
     "tech/elastic-stack.md",
     "tech/git.md",
     "tech/debian.md",
     "tech/centos7.md",
     "tech/java-common-mistakes.md",
     "tech/ecd/geek-redis/hashtable.md",
-    "tech/geek-redis.md",
-    "tech/ecd/geek-redis/datastruct.md"
+    "tech/geek-redis.md"
   ]
 }

@@ -646,7 +646,7 @@ for range ch {
 
 ### chan状态
 
-![](images/go-concurrency/chan-status.png)
+![](./images/go-concurrency/chan-status.png)
 
 ## semaphore
 
@@ -693,7 +693,7 @@ CyclicBarrier允许一组 goroutine 彼此等待，到达一个共同的执行�
 
 事实上，这个 CyclicBarrier 是参考[Java CyclicBarrier](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/util/concurrent/CyclicBarrier.html)和C# Barrier的功能实现的。Java 提供了 CountDownLatch（倒计时器）和 CyclicBarrier（循环栅栏）两个类似的用于保证多线程到达同一个执行点的类，只不过前者是到达 0 的时候放行，后者是到达某个指定的数的时候放行
 
-![](images/go-concurrency/cyclicbarrier.png)
+![](./images/go-concurrency/cyclicbarrier.png)
 
 如果使用 WaitGroup 实现的话，调用比较复杂，不像 CyclicBarrier 那么清爽。更重要的是，如果想重用 WaitGroup，你还要保证，将 WaitGroup 的计数值重置到 n 的时候不会出现并发问题。
 
