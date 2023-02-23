@@ -3,12 +3,25 @@ title: k8s-saythx
 slug: k8s-saythx
 author: [jianchengwang]
 date: 2023-01-10
-excerpt: "今天使用腾讯云搭建一个serverless的k8s集群，简单使用下k8s部署[saythx](https://github.com/tao12345666333/saythx)这个测试项目，这边做个小记。"
+excerpt: "今天使用kubeadm的k8s集群，简单使用下k8s部署[saythx](https://github.com/tao12345666333/saythx)这个测试项目，这边做个小记。"
 draft: true
 tags: [cloud]
 ---
 
-今天使用腾讯云搭建一个serverless的k8s集群，简单使用下k8s部署[saythx](https://github.com/tao12345666333/saythx)这个测试项目，这边做个小记。
+今天使用kubeadmin搭建k8s集群，简单使用下k8s部署[saythx](https://github.com/tao12345666333/saythx)这个测试项目，这边做个小记。
+
+## kubeadm
+
+```bash
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+apt-get update
+apt-get install -y docker.io kubeadm
+```
 
 ## kubectl
 

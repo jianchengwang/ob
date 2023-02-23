@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "44a7439103862ab1",
+        "id": "8c74c404fbd796f8",
         "type": "tabs",
         "children": [
           {
-            "id": "a53d52619090dd00",
+            "id": "9c34d53dfc1c71b2",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -73,6 +73,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "life/test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,7 +89,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "life/test.md"
+              }
             }
           }
         ],
@@ -98,17 +101,28 @@
     "direction": "horizontal",
     "width": 200
   },
-  "active": "a53d52619090dd00",
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-excalidraw-plugin:New Excalidraw drawing": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "audio-recorder:Start/stop recording": false
+    }
+  },
+  "active": "977f6da61281cf1c",
   "lastOpenFiles": [
+    "store/大荒.md",
+    "column/cloudnative.md",
+    "life/test.md",
+    "book/白夜行.md",
+    "column/cloudnative/5.helm/helm.md",
+    "column/cloudnative/1.setup/setup.md",
     "tech/k8s-saythx.md",
-    "tech/debian.md",
-    "tech/centos7.md",
-    "tech/dsa.md",
-    "tech/ecd/dsa/geek-1.md",
-    "tech/ecd/dsa/greedy-dp.md",
-    "tech/ecd/dsa/graph.md",
-    "tech/ecd/dsa/sorting.md",
-    "tech/ecd/dsa/heap.md",
-    "tech/ecd/dsa/hashtable.md"
+    "tech/kafka.md",
+    "tech/k8s.md",
+    "tech/java8.md"
   ]
 }
