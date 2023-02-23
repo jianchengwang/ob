@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8c74c404fbd796f8",
+        "id": "586cc6af3dbfac66",
         "type": "tabs",
         "children": [
           {
-            "id": "9c34d53dfc1c71b2",
+            "id": "a873347c1eb5d942",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -73,7 +73,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "life/test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,9 +88,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "life/test.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -112,17 +109,17 @@
       "audio-recorder:Start/stop recording": false
     }
   },
-  "active": "977f6da61281cf1c",
+  "active": "a873347c1eb5d942",
   "lastOpenFiles": [
-    "store/大荒.md",
-    "column/cloudnative.md",
-    "life/test.md",
-    "book/白夜行.md",
-    "column/cloudnative/5.helm/helm.md",
-    "column/cloudnative/1.setup/setup.md",
+    "tech/geek-redis.md",
     "tech/k8s-saythx.md",
-    "tech/kafka.md",
     "tech/k8s.md",
-    "tech/java8.md"
+    "tech/java8.md",
+    "tech/ml-for-beginners.md",
+    "column/cloudnative.md",
+    "tech/debian.md",
+    "tech/centos7.md",
+    "tech/dsa.md",
+    "tech/ecd/dsa/geek-1.md"
   ]
 }

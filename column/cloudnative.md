@@ -1,6 +1,6 @@
 ---
 title: 云原生实践
-slug: todo-cloudnative
+slug: cloudnative
 author: [jianchengwang]
 date: 2023-02-21
 excerpt: "DevOps+持续交付+微服务+容器"
@@ -10,7 +10,7 @@ tags: [cloudnative]
 docLinks:
   - title: 1.setup
     items:
-      - title: 1.setup
+      - title: setup
         link: https://cdn.jsdelivr.net/gh/jianchengwang/todo-cloudnative@main/1.setup/setup.md
   - title: 2.container-base
     items:
