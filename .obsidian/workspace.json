@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "586cc6af3dbfac66",
+        "id": "da4cba50fb046517",
         "type": "tabs",
         "children": [
           {
-            "id": "a873347c1eb5d942",
+            "id": "940b63443cae4846",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -109,8 +109,13 @@
       "audio-recorder:Start/stop recording": false
     }
   },
-  "active": "a873347c1eb5d942",
+  "active": "940b63443cae4846",
   "lastOpenFiles": [
+    "tech/spring-common-mistakes.md",
+    "tech/images/spring-common-mistakes/spring-init.webp",
+    "tech/images/spring-common-mistakes",
+    "tech/java-common-mistakes.md",
+    "tech/java-source-base.md",
     "tech/geek-redis.md",
     "tech/k8s-saythx.md",
     "tech/k8s.md",
