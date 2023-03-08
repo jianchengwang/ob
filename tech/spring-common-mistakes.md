@@ -305,7 +305,50 @@ Object result = converter.convertIfNecessary(matchingBeans.values(), type);
 第二部分，将这些后置处理器实例化，并注册到 Spring 的容器中；
 第三部分，实例化所有用户定制类，调用后置处理器进行辅助装配、类初始化等等。第一部分和第二部分并非是我们今天要讨论的重点，这里仅仅是为了让你知道 CommonAnnotationBeanPostProcessor 这个后置处理类是何时被 Spring 加载和实例化的。
 
+现在我们重点看下第三部分，即 Spring 初始化单例类的一般过程，基本都是 getBean()->doGetBean()->getSingleton()，如果发现 Bean 不存在，则调用 createBean()->doCreateBean() 进行实例化。
 
+而用来实例化 Bean 的 createBeanInstance 方法通过依次调用 DefaultListableBeanFactory.instantiateBean() >SimpleInstantiationStrategy.instantiate()，最终执行到 BeanUtils.instantiateClass()，其代码如下：
+
+```java
+
+public static <T> T instantiateClass(Constructor<T> ctor, Object... args) throws BeanInstantiationException {
+   Assert.notNull(ctor, "Constructor must not be null");
+   try {
+      ReflectionUtils.makeAccessible(ctor);
+      return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
+            KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
+   }
+   catch (InstantiationException ex) {
+      throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
+   }
+   //省略非关键代码
+}
+
+```
+
+就是在于**使用 @Autowired 直接标记在成员属性上而引发的装配行为是发生在构造器执行之后的**
+
+备注，Spring 在类属性完成注入之后，会回调用户定制的初始化方法。即在 populateBean 方法之后，会调用 initializeBean 方法，
+
+```java
+protected Object initializeBean(final String beanName, final Object bean, @Nullable RootBeanDefinition mbd) {
+   //省略非关键代码 
+   if (mbd == null || !mbd.isSynthetic()) {
+      wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+   }
+   try {
+      invokeInitMethods(beanName, wrappedBean, mbd);
+   }
+   //省略非关键代码 
+}
+```
+
+这里你可以看到 applyBeanPostProcessorsBeforeInitialization 和 invokeInitMethods 这两个关键方法的执行，它们分别处理了 @PostConstruct 注解和 InitializingBean 接口这两种不同的初始化方案的逻辑
+
+解决方案，
+1. 构造参数注入，spring推荐的，详情请自行查阅[spring.io](https://docs.spring.io/spring-framework/docs/3.0.0.M4/reference/html/ch03s04.html)
+2. PostConstruct 注解进行修饰
+3. 
 
 
 
