@@ -348,7 +348,26 @@ protected Object initializeBean(final String beanName, final Object bean, @Nulla
 解决方案，
 1. 构造参数注入，spring推荐的，详情请自行查阅[spring.io](https://docs.spring.io/spring-framework/docs/3.0.0.M4/reference/html/ch03s04.html)
 2. PostConstruct 注解进行修饰
-3. 
+3. InitializingBean.afterPropertiesSet
+
+### 8.意外触发shutdown方法
+
+我们发现只有通过使用 Bean 注解注册到 Spring 容器的对象，才会在 Spring 容器被关闭的时候自动调用 shutdown 方法，而使用 @Component（Service 也是一种 Component）将当前类自动注入到 Spring 容器时，shutdown 方法则不会被自动执行。
+
+使用 Bean 注解的方法所注册的 Bean 对象，如果用户不设置 destroyMethod 属性，则其属性值为 AbstractBeanDefinition.INFER_METHOD。此时 Spring 会检查当前 Bean 对象的原始类中是否有名为 shutdown 或者 close 的方法，如果有，此方法会被 Spring 记录下来，并在容器被销毁时自动执行；当然如若没有，那么自然什么都不会发生。
+
+```java
+doCreateBean
+->registerDisposableBeanIfNecessary
+->registerDisposableBean(new DisposableBeanAdapter)
+->inferDestroyMethodIfNecessary
+```
+
+`DisposableBeanAdapter#inferDestroyMethodIfNecessary`
+
+
+
+
 
 
 
