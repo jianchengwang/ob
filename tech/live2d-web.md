@@ -232,7 +232,7 @@ main.ts 主程序启动程序
 touchmanager.ts 事件的管理类(比如移动鼠标,点击鼠标,触摸屏触碰等)
 ```
 
-简单修改下就可以了，也可以参照我的[demo代码](https://github.com/jianchengwang/todo-web/raw/master/live2d-web)
+简单修改下就可以了，也可以参照我的[demo代码](https://github.com/jianchengwang/todo-web/raw/main/live2d-web)
 
 ### 模型预览
 
