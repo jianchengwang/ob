@@ -2,10 +2,7 @@
   "legacyEditor": false,
   "livePreview": true,
   "promptDelete": false,
-  "spellcheckLanguages": [
-    "zh-CN",
-    "en-AU"
-  ],
+  "spellcheckLanguages": null,
   "useMarkdownLinks": true,
   "newLinkFormat": "relative",
   "newFileLocation": "root",
