@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tech/hardhat-bsc-demo.md",
-                "mode": "source",
+                "file": "tech/arm-conf.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/hardhat-bsc-demo.md",
+                "file": "tech/arm-conf.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tech/hardhat-bsc-demo.md"
+                "file": "tech/arm-conf.md"
               }
             }
           }
@@ -111,47 +111,47 @@
       }
     ],
     "direction": "horizontal",
-    "width": 362.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-excalidraw-plugin:New Excalidraw drawing": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "command-palette:Open command palette": false,
       "markdown-importer:Open format converter": false,
-      "audio-recorder:Start/stop recording": false
+      "audio-recorder:Start/stop recording": false,
+      "obsidian-excalidraw-plugin:New Excalidraw drawing": false
     }
   },
-  "active": "d19bb791743ae840",
+  "active": "977f6da61281cf1c",
   "lastOpenFiles": [
-    "tech/go-concurrency.md",
+    "life/test.md",
+    "tech/arm-conf.md",
+    "tech/build-mysite.md",
+    "tech/centos7.md",
+    "tech/coderunner.md",
+    "tech/curl.md",
+    "tech/docker.md",
+    "tech/debian.md",
+    "tech/manjaro.md",
     "tech/live2d-web.md",
-    "tech/java-common-mistakes.md",
-    "tech/intro-to-vue.md",
-    "tech/vps.md",
-    "baeldung/java-concurrency/java-concurrency-interview-questions.md",
-    "baeldung/java-concurrency/java-dining-philoshophers.md",
-    "baeldung/java-concurrency/java-stop-execution-after-certain-time.md",
-    "baeldung/java-concurrency/java-delay-code-execution.md",
-    "baeldung/java-concurrency/java-thread-safety.md",
-    "baeldung/java-concurrency/java-cyclicbarrier-countdownlatch.md",
-    "baeldung/java-concurrency/java-thread-local-random.md",
-    "baeldung/java-concurrency/java-cyclic-barrier.md",
-    "baeldung/java-concurrency/java-completablefuture.md",
-    "baeldung/java-concurrency/java-executor-wait-for-threads.md",
-    "baeldung/java-concurrency/java-concurrent-locks.md",
-    "baeldung/java-concurrency/java-countdown-latch.md",
-    "baeldung/java-concurrency/java-8-parallel-streams-custom-threadpool.md",
-    "baeldung/java-concurrency/java-fork-join.md",
-    "baeldung/java-concurrency/java-executor-service-tutorial.md",
-    "store/明月泪.md",
-    "store/温柔刀.md",
-    "store/长安乱.md",
-    "baeldung/java-concurrency/java-daemon-thread.md",
-    "baeldung/java-concurrency/java-asynchronous-programming.md",
-    "baeldung/cs/async-vs-multi-threading.md",
+    "tech/kohya-training-lora.md",
+    "tech/k8s-saythx.md",
+    "tech/git.md",
+    "tech/java8.md",
+    "tech/gradle.md",
+    "tech/functional-programming-in-javascript.md",
+    "tech/geek-redis.md",
+    "tech/flink.md",
+    "tech/flask-todolist.md",
+    "tech/java-source-base.md",
+    "tech/elastic-stack.md",
+    "tech/ext-webcomponents-vue.md",
+    "tech/hardhat-bsc-demo.md",
+    "tech/hyperledger-fabric.md",
+    "tech/idea.md",
+    "tech/image-similarity-flask.md",
     "baeldung/cs",
     "baeldung/java-concurrency/Pasted image 20230809120134.png",
     "baeldung/java-concurrency",
