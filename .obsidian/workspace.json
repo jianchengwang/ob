@@ -4,18 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "f78f9517eee83b01",
+        "id": "bfeae520c9f23a4f",
         "type": "tabs",
         "children": [
           {
-            "id": "d19bb791743ae840",
+            "id": "fe4433601ce5d7d6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "tech/arm-conf.md",
-                "mode": "preview",
-                "source": false
+                "file": "tech/ecd/dsa/tree.md"
               }
             }
           }
@@ -69,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5
+    "width": 327.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tech/arm-conf.md",
+                "file": "tech/ecd/dsa/tree.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tech/arm-conf.md"
+                "file": "tech/ecd/dsa/tree.md"
               }
             }
           }
@@ -111,7 +109,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -124,34 +123,34 @@
       "obsidian-excalidraw-plugin:New Excalidraw drawing": false
     }
   },
-  "active": "977f6da61281cf1c",
+  "active": "fe4433601ce5d7d6",
   "lastOpenFiles": [
-    "life/test.md",
+    "tech/images/spring-common-mistakes/spring-init.webp",
     "tech/arm-conf.md",
     "tech/build-mysite.md",
-    "tech/centos7.md",
-    "tech/coderunner.md",
-    "tech/curl.md",
+    "column/cloudnative.md",
+    "store/温柔刀.md",
+    "baeldung/cs/what-is-mutex.md",
+    "baeldung/cs/race-conditions.md",
+    "baeldung/cs/monitor.md",
+    "baeldung/cs/async-vs-multi-threading.md",
+    "tech/go-concurrency.md",
+    "tech/hardhat-bsc-demo.md",
+    "tech/functional-programming-in-javascript.md",
+    "tech/flink.md",
+    "tech/flask-todolist.md",
     "tech/docker.md",
+    "tech/curl.md",
+    "tech/coderunner.md",
+    "tech/centos7.md",
+    "tech/hyperledger-fabric.md",
+    "life/test.md",
     "tech/debian.md",
     "tech/manjaro.md",
     "tech/live2d-web.md",
     "tech/kohya-training-lora.md",
     "tech/k8s-saythx.md",
     "tech/git.md",
-    "tech/java8.md",
-    "tech/gradle.md",
-    "tech/functional-programming-in-javascript.md",
-    "tech/geek-redis.md",
-    "tech/flink.md",
-    "tech/flask-todolist.md",
-    "tech/java-source-base.md",
-    "tech/elastic-stack.md",
-    "tech/ext-webcomponents-vue.md",
-    "tech/hardhat-bsc-demo.md",
-    "tech/hyperledger-fabric.md",
-    "tech/idea.md",
-    "tech/image-similarity-flask.md",
     "baeldung/cs",
     "baeldung/java-concurrency/Pasted image 20230809120134.png",
     "baeldung/java-concurrency",
@@ -160,7 +159,6 @@
     "tech/images/performance-testing/performance-index.png",
     "tech/images/performance-testing/performance-tool.png",
     "tech/images/performance-testing",
-    "tech/images/spring-common-mistakes/spring-init.webp",
     "tech/images/spring-common-mistakes"
   ]
 }
