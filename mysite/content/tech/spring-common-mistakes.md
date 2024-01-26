@@ -298,7 +298,7 @@ Object result = converter.convertIfNecessary(matchingBeans.values(), type);
 
 ### 7.构造器内抛空指针异常
 
-![](images/spring-common-mistakes/spring-init.webp)
+![](../../public/tech/images/spring-common-mistakes/spring-init.webp)
 
 这个图初看起来复杂，我们不妨将其分为三部分：
 第一部分，将一些必要的系统类，比如 Bean 的后置处理器类，注册到 Spring 容器，其中就包括我们这节课关注的 CommonAnnotationBeanPostProcessor 类；

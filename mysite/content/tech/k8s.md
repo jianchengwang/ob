@@ -60,9 +60,9 @@ kubectl get pod -n kube-system
 
 ## 基础架构
 
-![](./images/k8s/cluster.png)
+![](../../public/tech/images/k8s/cluster.png)
 
-![](./images/k8s/cluster-3.png)
+![](../../public/tech/images/k8s/cluster-3.png)
 
 Kubernetes 采用了现今流行的“控制面 / 数据面”（Control Plane / Data Plane）架构，集群里的计算机被称为“节点”（Node），可以是实机也可以是虚机，少量的节点用作控制面来执行集群的管理维护工作，其他的大部分节点都被划归数据面，用来跑业务应用。
 
@@ -92,7 +92,7 @@ ps -ef | grep kubelet
 
 Master 里的 apiserver、scheduler 等组件需要获取节点的各种信息才能够作出管理决策，那这些信息该怎么来呢？这就需要 Node 里的 3 个组件了，分别是 kubelet、kube-proxy、container-runtime。
 
-![](./images/k8s/cluster-1.png)
+![](../../public/tech/images/k8s/cluster-1.png)
 
 1. kubelet 是 Node 的代理，负责管理 Node 相关的绝大部分操作，Node 上只有它能够与 apiserver 通信，实现状态报告、命令下发、启停容器等功能，相当于是 Node 上的一个“小管家”。
 2. kube-proxy 的作用有点特别，它是 Node 的网络代理，只负责管理容器的网络通信，简单来说就是为 Pod 转发 TCP/UDP 数据包，相当于是专职的“小邮差”。
@@ -120,11 +120,11 @@ kubectl proxy --port=8888 --address='192.168.3.140' --accept-hosts='^.*' &
 
 ### 总结
 
-![](./images/k8s/cluster-2.png)
+![](../../public/tech/images/k8s/cluster-2.png)
 
 ## Yaml
 
-![](./images/k8s/yaml-lang.png)
+![](../../public/tech/images/k8s/yaml-lang.png)
 
 [YAML](https://yaml.org/) 是 JSON 的超集，支持整数、浮点数、布尔、字符串、数组和对象等数据类型。也就是说，任何合法的 JSON 文档也都是 YAML 文档，如果你了解 JSON，那么学习 YAML 会容易很多。但和 JSON 比起来，YAML 的语法更简单，形式也更清晰紧凑，比如：
 1. 使用空白与缩进表示层次（有点类似 Python），可以不使用花括号和方括号。
@@ -235,9 +235,9 @@ Pod 的概念也就呼之欲出了，容器正是“豆荚”里那些小小的�
 
 Kubernetes 让 Pod 去编排处理容器，然后把 Pod 作为应用调度部署的最小单位，Pod 也因此成为了 Kubernetes 世界里的“原子”（当然这个“原子”内部是有结构的，不是铁板一块），基于 Pod 就可以构建出更多更复杂的业务形态了。
 
-![](./images/k8s/component.png)
+![](../../public/tech/images/k8s/component.png)
 
-![](./images/k8s/component-1.png)
+![](../../public/tech/images/k8s/component-1.png)
 
 ### 用yaml描述pod
 
@@ -317,7 +317,7 @@ kubectl get job
 ```
 
 
-![](./images/k8s/job-yaml.png)
+![](../../public/tech/images/k8s/job-yaml.png)
 
 CronJob 的关键字段是 spec.jobTemplate 和 spec.schedule，分别定义了 Job 模板和定时运行的规则。
 
@@ -329,7 +329,7 @@ kubectl apply -f echo-cj.yml
 kubectl get cj
 ```
 
-![](./images/k8s/cronjob-yaml.png)
+![](../../public/tech/images/k8s/cronjob-yaml.png)
 
 ## ConfigMap & Secret
 
@@ -466,7 +466,7 @@ spec:
     command: ["/bin/sleep", "300"]
 ```
 
-![](./images/k8s/pod-yaml.png)
+![](../../public/tech/images/k8s/pod-yaml.png)
 
 #### Volume 的方式
 
@@ -495,7 +495,7 @@ spec:
       name: sec-vol
 ```
 
-![](./images/k8s/pod-yaml-1.png)
+![](../../public/tech/images/k8s/pod-yaml-1.png)
 
 完整配置，如下，
 
@@ -530,7 +530,7 @@ spec:
 
 ## 初级知识网络
 
-![](./images/k8s/cluster-4.png)
+![](../../public/tech/images/k8s/cluster-4.png)
 
 ## kubeadm搭建生产集群
 
@@ -540,7 +540,7 @@ spec:
 
 ### 实验架构
 
-![](./images/k8s/cluster-5.png)
+![](../../public/tech/images/k8s/cluster-5.png)
 
 ### 准备工作
 
@@ -832,7 +832,7 @@ status: {}
 2. `replicas` 就是“副本数量”的意思，也就是说，指定要在 Kubernetes 集群里运行多少个 Pod 实例。将replicas设置为0，对应应用的pod数量为0，应用停止服务。这样的方式保存了deployment，如果需要启动应用，将replicas设置为需要的数量即可。
 3. `selector` 它的作用是“筛选”出要被 Deployment 管理的 Pod 对象，下属字段“matchLabels”定义了 Pod 对象应该携带的 label，它必须和“template”里 Pod 定义的“labels”完全相同，否则 Deployment 就会找不到要控制的 Pod 对象，apiserver 也会告诉你 YAML 格式校验错误无法创建。 
 
-![](./images/k8s/deployment-yaml.png)
+![](../../public/tech/images/k8s/deployment-yaml.png)
 
 ```shell
 kubectl apply -f npx-dep.yaml
@@ -882,7 +882,7 @@ spec:
         - containerPort: 6379
 ```
 
-![](./images/k8s/deployment-yaml-1.png)
+![](../../public/tech/images/k8s/deployment-yaml-1.png)
 
 可以发现`DaemonSet`跟`Deployment`的唯一区别就是没有`replicas`，污点的介绍请参考[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)
 
@@ -900,7 +900,7 @@ Kubernetes 的 4 个核心组件 apiserver、etcd、scheduler、controller-manag
 
 类似LVS、Nginx，来实现负载均衡，Kubernetes 会给它分配一个静态 IP 地址，然后它再去自动管理、维护后面动态变化的 Pod 集合，当客户端访问 Service，它就根据某种策略，把流量转发给后面的某个 Pod。
 
-![](./images/k8s/cluster-6.png)
+![](../../public/tech/images/k8s/cluster-6.png)
 
 ```shell
 export out="--dry-run=client -o yaml"
