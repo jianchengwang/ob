@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8df12d87eda46054",
+        "id": "72bead6b3bfc9438",
         "type": "tabs",
         "children": [
           {
-            "id": "e6f54ceef9412f8e",
+            "id": "77a4a8b061648b40",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -65,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 257.5
+    "width": 487.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -81,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ecd/dsa/graph.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,9 +96,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "ecd/dsa/graph.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -123,44 +120,51 @@
   },
   "active": "977f6da61281cf1c",
   "lastOpenFiles": [
-    "mysite",
-    "baeldung/java-concurrency/java-8-parallel-streams-custom-threadpool.md",
-    "mysite/public/tech",
-    "mysite/content/tech/es6.md",
-    "mysite/content",
-    "mysite/content/column/cloudnative.md",
-    "baeldung/java-concurrency/java-thread-safety.md",
-    "mysite/public",
-    "ecd/dsa/tree.md",
     "mysite/public/tech/images/spring-common-mistakes/spring-init.webp",
-    "mysite/content/tech/arm-conf.md",
-    "mysite/content/tech/build-mysite.md",
-    "mysite/content/store/温柔刀.md",
-    "baeldung/cs/what-is-mutex.md",
-    "baeldung/cs/race-conditions.md",
-    "baeldung/cs/monitor.md",
-    "baeldung/cs/async-vs-multi-threading.md",
-    "mysite/content/tech/go-concurrency.md",
+    "mysite/public/tech/images/spring-common-mistakes",
+    "mysite/public/tech/images/mysql/redolog.png",
+    "mysite/public/tech/images/mysql/deadlock.png",
+    "mysite/public/tech/images/mysql/page.png",
+    "mysite/public/tech/images/mysql/cluster.png",
+    "mysite/public/tech/images/mysql/deadlock-1.png",
+    "mysite/public/tech/images/mysql/buffer.png",
+    "mysite/public/tech/images/mysql",
+    "mysite/public/tech/images/k8s/yaml-lang.png",
+    "mysite/public/tech/images/k8s/pod-yaml.png",
+    "mysite/public/tech/images/k8s/pod-yaml-1.png",
+    "mysite/public/tech/images/k8s/job-yaml.png",
+    "mysite/public/tech/images/k8s",
+    "mysite/public/tech/images/java-common-mistakes",
+    "mysite/public/tech/images/go-concurrency",
+    "mysite/public/tech/images",
+    "mysite/content/tech/vps.md",
+    "mysite/content/tech/window-terminal.md",
+    "mysite/content/tech/tlcl.md",
+    "mysite/content/tech/this-in-javascript.md",
+    "mysite/content/tech/ssh.md",
+    "mysite/content/tech/spring-common-mistakes.md",
+    "mysite/content/tech/redis.md",
+    "mysite/content/tech/mysql.md",
+    "mysite/content/tech/manjaro.md",
+    "mysite/content/tech/live2d-web.md",
+    "mysite/content/tech/kohya-training-lora.md",
+    "mysite/content/tech/k8s-saythx.md",
+    "mysite/content/tech/k8s.md",
+    "mysite/content/tech/java-thread.md",
+    "mysite/content/tech/java-common-mistakes.md",
+    "mysite/content/tech/intro-to-vue.md",
+    "mysite/content/tech/image-similarity-flask.md",
+    "mysite/content/tech/intro-to-serverless-functions.md",
+    "mysite/content/tech/idea.md",
     "mysite/content/tech/hardhat-bsc-demo.md",
+    "mysite/content/tech/go-concurrency.md",
+    "mysite/content/tech/git.md",
     "mysite/content/tech/functional-programming-in-javascript.md",
     "mysite/content/tech/flink.md",
     "mysite/content/tech/flask-todolist.md",
-    "mysite/content/tech/docker.md",
-    "mysite/content/tech/curl.md",
-    "mysite/content/tech/coderunner.md",
-    "mysite/content/tech/centos7.md",
-    "tech/hyperledger-fabric.md",
-    "life/test.md",
-    "tech/debian.md",
-    "mysite/content/tech/manjaro.md",
-    "baeldung/cs",
-    "baeldung/java-concurrency/Pasted image 20230809120134.png",
-    "baeldung/java-concurrency",
-    "baeldung",
-    "tech/images/performance-testing/performance-tool.png",
-    "tech/images/performance-testing/performance-index.png",
-    "tech/images/performance-testing/performance-tool.png",
-    "tech/images/performance-testing",
-    "mysite/public/tech/images/spring-common-mistakes"
+    "mysite/public/tech",
+    "mysite/content/tech",
+    "mysite/content/store",
+    "mysite/content/column"
   ]
 }
