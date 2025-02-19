@@ -4,15 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "72bead6b3bfc9438",
+        "id": "4f6a099e7caed671",
         "type": "tabs",
         "children": [
           {
-            "id": "77a4a8b061648b40",
+            "id": "6cfcbd30f070c6a2",
             "type": "leaf",
             "state": {
               "type": "empty",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -34,8 +36,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -50,7 +55,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -58,14 +65,16 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 487.5
+    "width": 518.5
   },
   "right": {
     "id": "4261372f0e5bd4c6",
@@ -88,7 +97,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
             }
           },
           {
@@ -96,7 +107,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
             }
           }
         ],
@@ -120,19 +133,33 @@
   },
   "active": "977f6da61281cf1c",
   "lastOpenFiles": [
+    "mysite/content/tech/docker.md",
+    "wxmp",
+    "mysite/content/tech/centos7.md",
+    "mysite/content/tech/coderunner.md",
+    "mysite/content/tech/es6.md",
+    "mysite/content/tech/dsa.md",
+    "wxmp/baeldung/java-concurrency/java-daemon-thread.md",
+    "Untitled.canvas",
+    "ecd/dsa/sorting.png",
+    "ecd/dsa/sorting.md",
+    "ecd/dsa/heap.md",
+    "ecd/dsa/heap.png",
+    "mysite/content/column/cloudnative.md",
+    "ecd/dsa/stack-queue.png",
+    "ecd/dsa/tree.png",
+    "ecd/dsa/stack-queue.md",
+    "ecd/dsa/memory-model.md",
+    "ecd/dsa/list.png",
+    "ecd/dsa/instruction.md",
+    "ecd/dsa/hashtable.png",
+    "ecd/dsa/graph.md",
     "mysite/public/tech/images/spring-common-mistakes/spring-init.webp",
     "mysite/public/tech/images/spring-common-mistakes",
     "mysite/public/tech/images/mysql/redolog.png",
     "mysite/public/tech/images/mysql/deadlock.png",
     "mysite/public/tech/images/mysql/page.png",
-    "mysite/public/tech/images/mysql/cluster.png",
-    "mysite/public/tech/images/mysql/deadlock-1.png",
-    "mysite/public/tech/images/mysql/buffer.png",
     "mysite/public/tech/images/mysql",
-    "mysite/public/tech/images/k8s/yaml-lang.png",
-    "mysite/public/tech/images/k8s/pod-yaml.png",
-    "mysite/public/tech/images/k8s/pod-yaml-1.png",
-    "mysite/public/tech/images/k8s/job-yaml.png",
     "mysite/public/tech/images/k8s",
     "mysite/public/tech/images/java-common-mistakes",
     "mysite/public/tech/images/go-concurrency",
@@ -150,21 +177,8 @@
     "mysite/content/tech/kohya-training-lora.md",
     "mysite/content/tech/k8s-saythx.md",
     "mysite/content/tech/k8s.md",
-    "mysite/content/tech/java-thread.md",
-    "mysite/content/tech/java-common-mistakes.md",
-    "mysite/content/tech/intro-to-vue.md",
-    "mysite/content/tech/image-similarity-flask.md",
-    "mysite/content/tech/intro-to-serverless-functions.md",
-    "mysite/content/tech/idea.md",
-    "mysite/content/tech/hardhat-bsc-demo.md",
-    "mysite/content/tech/go-concurrency.md",
-    "mysite/content/tech/git.md",
-    "mysite/content/tech/functional-programming-in-javascript.md",
-    "mysite/content/tech/flink.md",
-    "mysite/content/tech/flask-todolist.md",
     "mysite/public/tech",
     "mysite/content/tech",
-    "mysite/content/store",
-    "mysite/content/column"
+    "mysite/content/store"
   ]
 }
